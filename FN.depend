@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1728969676 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\main.cpp
+1730063202 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\main.cpp
 	"Juego.h"
 
 1525812018 c:\users\juanm\onedrive\escritorio\proyecto\fn\sfml\include\sfml\graphics.hpp
@@ -552,7 +552,7 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1729694873 c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.h
+1730298868 c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -562,8 +562,9 @@
 	"enemigo.h"
 	"Pelea.h"
 	"interfazPelea.h"
+	"botones.h"
 
-1729698047 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.cpp
+1730300473 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.cpp
 	"Juego.h"
 
 1729485134 c:\users\juanm\onedrive\escritorio\proyecto\fn\casa1.h
@@ -588,18 +589,27 @@
 	<SFML/Graphics.hpp>
 	"colisiones.h"
 
-1729684859 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.cpp
+1730300338 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.cpp
 	"Pelea.h"
 
-1729684866 c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.h
+1730299032 c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.h
 	<iostream>
 	<ctime>
 	<SFML\Graphics.hpp>
+	"botones.h"
 
-1729694613 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.cpp
+1729774018 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.cpp
 	"interfazPelea.h"
 
-1729692550 c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.h
+1730213765 c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.h
 	<iostream>
 	<SFML\Graphics.hpp>
+
+1730300100 c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.h
+	<iostream>
+	<SFML\Graphics.hpp>
+	"colisiones.h"
+
+1730214005 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.cpp
+	"botones.h"
 

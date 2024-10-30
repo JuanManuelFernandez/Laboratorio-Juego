@@ -5,15 +5,14 @@ void Juego::Jugar(){
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
 
+    puntoSalud = new int(100);
+
     font.loadFromFile("Pixeleada.ttf");
-    fontVida.loadFromFile("Pixeleada.ttf");
 
     text.setFont(font);
-    TextSalud.setFont(fontVida);
-    TextSaludE.setFont(fontVida);
+    TextSalud.setFont(font);
     text.setColor(sf::Color::White);
     TextSalud.setColor(sf::Color::White);
-    TextSaludE.setColor(sf::Color::White);
     text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
     text.setCharacterSize(30);
@@ -21,8 +20,6 @@ void Juego::Jugar(){
 
     TextSalud.setCharacterSize(30);
     TextSalud.setPosition(70, 10);
-
-    TextSaludE.setCharacterSize(30);
 
     fondo.loadFromFile("fondo/Pixeleado.png");
     spriteFondo.setTexture(fondo);
@@ -55,8 +52,14 @@ void Juego::Jugar(){
 
     ///INSTANCIA DE LOS OBJ DE CLASE(PELEA)
     Interfaz InterfazAtaques;
-    EnPelea PersonajeP("Personaje/ZaracFight.png", 150, 160);
-    EnPelea EnemigoP("Enemigos/Esqueleto.png", 80, 160);
+    EnPelea Pelea;
+    EnPelea PersonajeP;
+    EnPelea EnemigoE;
+    EnPelea EnemigoR;
+
+    Boton Botones[] = {
+        Boton("Pixeleada.ttf", 200, 30, 105, 450, 30, 255, 255, 255, "Ataque 1")
+    };
 
     ///RESPAWNS PERSONAJE, ENEMIGOS, ESTRUCTURAS
     Zarac.Respawn(900, 50);
@@ -79,11 +82,8 @@ void Juego::Jugar(){
     itemC.respawn(1100, 50);
     itemC2.respawn(800, 1150);
 
-    ///RESPAWN PELEA
-
-    PersonajeP.Posicion(450, 220);
-    EnemigoP.Posicion(250, 220);
     InterfazAtaques.Posicion();
+    Botones[0].Posicion(100, 450);
 
     ///GAMELOOP
     while (window.isOpen()){
@@ -95,11 +95,6 @@ void Juego::Jugar(){
                 window.close();
             }
         }
-
-        ///COMANDOS/CMD
-
-        ///ESTABLECEMOS LAS CORDENADAS PARA EL EJE X e Y
-
         ///UPDATE
         Zarac.Update();
         if(Zarac.esColision(item)){
@@ -123,22 +118,22 @@ void Juego::Jugar(){
             item4.hide();
         }
 
-        if(Zarac.esColision(itemC) && puntoSalud<100){
-            if(puntoSalud + 50 > 100){
-                puntoSalud = 100;
+        if(Zarac.esColision(itemC) && *puntoSalud<100){
+            if(*puntoSalud + 50 > 100){
+                *puntoSalud = 100;
             }
             else{
-                puntoSalud += 50;
+                *puntoSalud += 50;
             }
             soundHeart.play();
             itemC.hide();
         }
-        if(Zarac.esColision(itemC2) && puntoSalud<100){
-            if(puntoSalud + 50 > 100){
-                puntoSalud = 100;
+        if(Zarac.esColision(itemC2) && *puntoSalud<100){
+            if(*puntoSalud + 50 > 100){
+                *puntoSalud = 100;
             }
             else{
-                puntoSalud += 50;
+                *puntoSalud += 50;
             }
             soundHeart.play();
             itemC2.hide();
@@ -157,48 +152,87 @@ void Juego::Jugar(){
             Zarac.setPosicion(Zarac.getPosicion() - Zarac.getVelocidad());
         }
 
-
         ///TEST PELEA
         if(Zarac.esColision(Esqueleto)){
             Visibles = false;
+            EnemigoActivo = 1;
             fondo.loadFromFile("fondo/pelea.png");
-            TextSalud.setPosition(550, 10);
-            TextSaludE.setPosition(30, 10);
+            PersonajeP.setTextura("Personaje/ZaracFight.png");
+            PersonajeP.setTam(150, 160);
+            PersonajeP.Posicion(450, 220);
 
-            if(puntosSaludE>0){
-                if(bandera){
-                    if(PersonajeP.Probabilidad()>50){
-                        ///sf::sleep(sf::seconds(2)); ///PAUSA EL JUEGO
-                        puntosSaludE = puntosSaludE - 10;
-                    }
-                    bandera = false;
+            EnemigoE.setTextura("Enemigos/Esqueleto.png");
+            EnemigoE.setTam(80, 160);
+            EnemigoE.Posicion(250, 220);
+
+            if(event.type==sf::Event::MouseMoved){
+                PosicionMouse = sf::Mouse::getPosition(window);
+                if(Botones[0].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
+                    SobreBoton = true;
                 }
-            }
-            if(puntoSalud>0){
-                if(banderaE){
-                    if(EnemigoP.Probabilidad()>50){
-                        puntoSalud = puntoSalud - 10;
-                    }
-                    banderaE = false;
-                }
-            }
-            if(puntosSaludE==0){
-                if(reloj.getElapsedTime().asSeconds() >= 3){
-                    Esqueleto.Respawn(-100, -100);
-                    fondo.loadFromFile("fondo/Pixeleado.png");
-                    Visibles = true;
-                }
-            }
-            else{
-                bandera = true;
-                banderaE = true;
             }
 
+            Gano = Pelea.Pelear(puntoSalud, 50, SobreBoton);
+
+            ///MURIO SI/NO
+            if(Gano==true){
+                //reloj.restart();
+                EnemigoMuerto = true;
+            }
+
+            ///RESETEA SI EL ENEMIGO MURIO
+            if(EnemigoMuerto /*&& reloj.getElapsedTime().asSeconds() >= 3*/){
+                Visibles = true;
+                EnemigoMuerto = false;
+                Gano = false;
+                puntos += 5;
+                Esqueleto.Respawn(-100, -100);
+                fondo.loadFromFile("fondo/Pixeleado.png");
+            }
+            SobreBoton = false;
+        }
+
+        if(Zarac.esColision(Rata)){
+            Visibles = false;
+            EnemigoActivo = 2;
+            fondo.loadFromFile("fondo/pelea.png");
+            PersonajeP.setTextura("Personaje/ZaracFight.png");
+            PersonajeP.setTam(150, 160);
+            PersonajeP.Posicion(450, 220);
+
+            EnemigoR.setTextura("Enemigos/rata.png");
+            EnemigoR.setTam(250, 160);
+            EnemigoR.Posicion(150, 250);
+
+            if(event.type==sf::Event::MouseMoved){
+                PosicionMouse = sf::Mouse::getPosition(window);
+                if(Botones[0].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
+                    SobreBoton = true;
+                }
+            }
+
+            Gano = Pelea.Pelear(puntoSalud, 50, SobreBoton);
+
+            ///MURIO SI/NO
+            if(Gano==true){
+                //reloj.restart();
+                EnemigoMuerto = true;
+            }
+
+            ///RESETEA SI EL ENEMIGO MURIO
+            if(EnemigoMuerto){
+                Visibles = true;
+                EnemigoMuerto = false;
+                Gano = false;
+                puntos += 5;
+                Rata.Respawn(-100, -100);
+                fondo.loadFromFile("fondo/Pixeleado.png");
+            }
+            SobreBoton = false;
         }
 
         text.setString(std::to_string(puntos));
-        TextSalud.setString("Salud: " + std::to_string(puntoSalud));
-        TextSaludE.setString("Salud: " + std::to_string(puntosSaludE));
+        TextSalud.setString("Salud: " + std::to_string(*puntoSalud));
 
         ///SE BORRA PARA NO SUPERPONER
         window.clear();
@@ -233,17 +267,29 @@ void Juego::Jugar(){
 
         else{
             window.draw(PersonajeP);
-            window.draw(EnemigoP);
-            window.draw(TextSalud);
-            window.draw(TextSaludE);
+            ///VERIFICAMOS EN QUE PELEA ESTAMOS
+            if(EnemigoActivo==1){
+                window.draw(EnemigoE);
+            }
+            /*
+            else if(EnemigoActivo==2){
+                window.draw(EnemigoR);
+            }
+            */
+            window.draw(Pelea.getTextHP());
+            window.draw(Pelea.getTextHPE());
+            window.draw(Pelea.getTextoTurno());
+
             window.draw(InterfazAtaques);
+            window.draw(Botones[0]);
         }
 
 
         ///DISPLAY
         window.display();
     }
+}
 
-        ///LIBERACION DEL JUEGO
-
+Juego::~Juego(){
+    delete puntoSalud;
 }

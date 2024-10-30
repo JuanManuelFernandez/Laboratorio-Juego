@@ -9,8 +9,6 @@ using namespace std;
 class Interfaz: public sf::Drawable{
     protected:
         sf::RectangleShape rec;
-        sf::Font font;
-        sf::Text TextAtaque;
     public:
         Interfaz();
         void Posicion();

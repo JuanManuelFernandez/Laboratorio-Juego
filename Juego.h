@@ -10,31 +10,29 @@
 #include "enemigo.h"
 #include "Pelea.h"
 #include "interfazPelea.h"
+#include "botones.h"
 
 class Juego{
     protected:
-        int puntos = 0;
-        int puntoSalud = 100;
-        int puntosSaludE = 50;
-        bool Visibles = true;
-        bool bandera = true;
-        bool banderaE = true;
+        int puntos = 0, EnemigoActivo = 0;
+        int* puntoSalud;
+        bool Visibles = true, EnemigoMuerto = false, Gano = false, SobreBoton = false;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;
         ///CONTADOR
         sf::Font font;
-        sf::Font fontVida;
-        sf::Text text, TextSalud, TextSaludE;
+        sf::Text text, TextSalud;
         ///SONIDO
-        sf::SoundBuffer buffer;
-        sf::Sound soundItem;
-        sf::SoundBuffer buffer2;
-        sf::Sound soundHeart;
+        sf::SoundBuffer buffer, buffer2;
+        sf::Sound soundItem, soundHeart;
         ///RELOJ PARA TRANSICIÓN
-        sf::Clock reloj;
+        ///sf::Clock reloj;
+        sf::Vector2i PosicionMouse;
+        sf::Event event;
     public:
         void Jugar();
+        ~Juego();
 };
 
 #endif // JUEGO_H_INCLUDED

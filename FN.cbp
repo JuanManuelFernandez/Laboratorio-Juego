@@ -43,6 +43,8 @@
 		<Unit filename="Juego.h" />
 		<Unit filename="Pelea.cpp" />
 		<Unit filename="Pelea.h" />
+		<Unit filename="botones.cpp" />
+		<Unit filename="botones.h" />
 		<Unit filename="casa1.cpp" />
 		<Unit filename="casa1.h" />
 		<Unit filename="casa2.cpp" />
