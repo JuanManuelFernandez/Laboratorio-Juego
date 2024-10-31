@@ -6,7 +6,9 @@ Videojuego  "Kingdom of kloster"
 
 Diseñado por: 
 Luka Sebastian Herrera
+
 Juan Manuel Fernandez Bogo
+
 Karen Anahi Moreno
 
 
