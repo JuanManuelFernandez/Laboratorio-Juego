@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ctime>
 #include <SFML\Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "botones.h"
 
 using namespace std;
@@ -12,6 +13,8 @@ class EnPelea: public sf::Drawable{
     protected:
         sf::RectangleShape rec;
         sf::Texture _texture;
+        sf::SoundBuffer Buff1, Buff2, Buff3;
+        sf::Sound Golpe, Miss, GolpeE;
         sf::Font font;
         sf::Text TextHP, TextHPE, TextTurno;
         sf::Clock reloj;
@@ -29,7 +32,7 @@ class EnPelea: public sf::Drawable{
         sf::Text getTextHP();
         sf::Text getTextHPE();
         ///int getSalud();
-        bool Pelear(int* HP, int p, bool s);
+        bool Pelear(int* HP, int p, bool B1, bool B2);
 };
 
 

@@ -39,8 +39,12 @@
 			<Add library="sfml-audio" />
 			<Add directory="SFML/lib" />
 		</Linker>
+		<Unit filename="BotonesPelea.cpp" />
+		<Unit filename="BotonesPelea.h" />
 		<Unit filename="Juego.cpp" />
 		<Unit filename="Juego.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
 		<Unit filename="Pelea.cpp" />
 		<Unit filename="Pelea.h" />
 		<Unit filename="botones.cpp" />

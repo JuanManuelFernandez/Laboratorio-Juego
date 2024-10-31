@@ -6,6 +6,14 @@ EnPelea::EnPelea(){
     TextHP.setFont(font);
     TextHPE.setFont(font);
 
+    Buff1.loadFromFile("sonidos/corte.wav");
+    Buff2.loadFromFile("sonidos/miss.wav");
+    Buff3.loadFromFile("sonidos/GolpeEnemigo.wav");
+
+    Golpe.setBuffer(Buff1);
+    Miss.setBuffer(Buff2);
+    GolpeE.setBuffer(Buff3);
+
     srand(time(0));
 }
 
@@ -30,7 +38,7 @@ void EnPelea::setTam(int w, int h){
     rec.setSize(sf::Vector2f(w, h));
 }
 
-bool EnPelea::Pelear(int* HP, int p, bool s){
+bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
     if(setVida){
         HPE = p;
     }
@@ -51,10 +59,14 @@ bool EnPelea::Pelear(int* HP, int p, bool s){
         if(reloj.getElapsedTime().asSeconds() >= 2){
             TextTurno.setPosition(-100, -100);
         }
-        if(s){
+        if(B1){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
                 if(Probabilidad() >= 1){
+                    Golpe.play();
                     HPE -= 10;
+                }
+                else{
+                    Miss.play();
                 }
                 Clickeo = true;
                 TurnoJugador = false;
@@ -62,9 +74,15 @@ bool EnPelea::Pelear(int* HP, int p, bool s){
                 TextTurno.setPosition(170, 150);
                 TextTurno.setString("TURNO DEL ENEMIGO");
             }
-            else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() > 50){
+        }
+        else if(B2){
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
+                if(Probabilidad() > 30){
+                    Golpe.play();
                     HPE -= 25;
+                }
+                else{
+                    Miss.play();
                 }
                 Clickeo = true;
                 TurnoJugador = false;
@@ -80,6 +98,7 @@ bool EnPelea::Pelear(int* HP, int p, bool s){
         TextTurno.setPosition(-100, -100); ///RECORDAR CAMBIAR PARA BORRAR EL TEXTO
         if(HPE > 0){
             if(Probabilidad() > 1){
+                GolpeE.play();
                 *HP -= 10;
             }
         }

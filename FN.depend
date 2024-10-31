@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1730063202 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\main.cpp
+1730382237 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\main.cpp
 	"Juego.h"
+	"Menu.h"
 
 1525812018 c:\users\juanm\onedrive\escritorio\proyecto\fn\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -552,7 +553,7 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1730298868 c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.h
+1730382733 c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -562,9 +563,9 @@
 	"enemigo.h"
 	"Pelea.h"
 	"interfazPelea.h"
-	"botones.h"
+	"BotonesPelea.h"
 
-1730300473 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.cpp
+1730382762 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\juego.cpp
 	"Juego.h"
 
 1729485134 c:\users\juanm\onedrive\escritorio\proyecto\fn\casa1.h
@@ -589,27 +590,44 @@
 	<SFML/Graphics.hpp>
 	"colisiones.h"
 
-1730300338 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.cpp
+1730335150 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.cpp
 	"Pelea.h"
 
-1730299032 c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.h
+1730335100 c:\users\juanm\onedrive\escritorio\proyecto\fn\pelea.h
 	<iostream>
 	<ctime>
 	<SFML\Graphics.hpp>
+	<SFML/Audio.hpp>
 	"botones.h"
 
-1729774018 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.cpp
+1730330994 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.cpp
 	"interfazPelea.h"
 
-1730213765 c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.h
+1730330319 c:\users\juanm\onedrive\escritorio\proyecto\fn\interfazpelea.h
 	<iostream>
 	<SFML\Graphics.hpp>
 
-1730300100 c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.h
+1730384804 c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.h
 	<iostream>
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1730214005 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.cpp
+1730384809 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\botones.cpp
+	"botones.h"
+
+1730333735 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\botonespelea.cpp
+	"BotonesPelea.h"
+
+1730332235 c:\users\juanm\onedrive\escritorio\proyecto\fn\botonespelea.h
+	<iostream>
+	<SFML\Graphics.hpp>
+	"colisiones.h"
+
+1730386389 source:c:\users\juanm\onedrive\escritorio\proyecto\fn\menu.cpp
+	"Menu.h"
+
+1730384041 c:\users\juanm\onedrive\escritorio\proyecto\fn\menu.h
+	<SFML/Graphics.hpp>
+	"Juego.h"
 	"botones.h"
 

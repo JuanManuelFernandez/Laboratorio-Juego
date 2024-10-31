@@ -10,13 +10,13 @@
 #include "enemigo.h"
 #include "Pelea.h"
 #include "interfazPelea.h"
-#include "botones.h"
+#include "BotonesPelea.h"
 
 class Juego{
     protected:
         int puntos = 0, EnemigoActivo = 0;
         int* puntoSalud;
-        bool Visibles = true, EnemigoMuerto = false, Gano = false, SobreBoton = false;
+        bool Visibles = true, EnemigoMuerto = false, Gano = false, SobreBoton1 = false, SobreBoton2 = false;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;

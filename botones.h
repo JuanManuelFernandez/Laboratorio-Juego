@@ -17,6 +17,7 @@ class Boton: public sf::Drawable, public Colision{
         Boton(string E, int w, int h, float x, float y, int s, int r, int v, int a, string C);
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void Posicion(float x, float y);
+        void setColor(sf::Color color);
         sf::FloatRect getBounds() const override;
 };
 
