@@ -11,6 +11,7 @@
 #include "Pelea.h"
 #include "interfazPelea.h"
 #include "BotonesPelea.h"
+#include "Inicializador.h"
 
 class Juego{
     protected:

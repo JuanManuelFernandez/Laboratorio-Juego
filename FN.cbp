@@ -41,6 +41,12 @@
 		</Linker>
 		<Unit filename="BotonesPelea.cpp" />
 		<Unit filename="BotonesPelea.h" />
+		<Unit filename="Inicializador.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Inicializador.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Juego.cpp" />
 		<Unit filename="Juego.h" />
 		<Unit filename="Menu.cpp" />

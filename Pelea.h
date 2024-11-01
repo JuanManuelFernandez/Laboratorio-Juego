@@ -16,7 +16,7 @@ class EnPelea: public sf::Drawable{
         sf::SoundBuffer Buff1, Buff2, Buff3;
         sf::Sound Golpe, Miss, GolpeE;
         sf::Font font;
-        sf::Text TextHP, TextHPE, TextTurno;
+        sf::Text TextHP, TextHPE, TextTurno, TextLog, TextLogDamage;
         sf::Clock reloj;
         bool TurnoJugador = true, Clickeo = false, EnemigoMuerto = false, setVida = true;
         int HPE = 0;
@@ -31,6 +31,8 @@ class EnPelea: public sf::Drawable{
         sf::Text getTextoTurno();
         sf::Text getTextHP();
         sf::Text getTextHPE();
+        sf::Text getTextLog();
+        sf::Text getTextLogDamage();
         ///int getSalud();
         bool Pelear(int* HP, int p, bool B1, bool B2);
 };

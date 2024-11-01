@@ -30,6 +30,9 @@ void Juego::Jugar(){
     buffer2.loadFromFile("sonidos/heart.wav");
     soundHeart.setBuffer(buffer2);
 
+    Inicializador ejem;
+    ejem.ejemplo();
+
     ///INSTANCIA DE LOS OBJ DE CLASE(MAPA)
     Personaje Zarac;
     Enemigo Esqueleto("Enemigos/Esqueleto.png", 60, 120);
@@ -283,6 +286,8 @@ void Juego::Jugar(){
             window.draw(Pelea.getTextHP());
             window.draw(Pelea.getTextHPE());
             window.draw(Pelea.getTextoTurno());
+            window.draw(Pelea.getTextLog());
+            window.draw(Pelea.getTextLogDamage());
 
             window.draw(InterfazAtaques);
             window.draw(Boton1);

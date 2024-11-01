@@ -5,6 +5,8 @@ EnPelea::EnPelea(){
     TextTurno.setFont(font);
     TextHP.setFont(font);
     TextHPE.setFont(font);
+    TextLog.setFont(font);
+    TextLogDamage.setFont(font);
 
     Buff1.loadFromFile("sonidos/corte.wav");
     Buff2.loadFromFile("sonidos/miss.wav");
@@ -51,6 +53,9 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
     TextHPE.setString("SALUD: " + to_string(HPE));
     TextHPE.setCharacterSize(30);
     TextHPE.setPosition(30, 10);
+    TextLog.setCharacterSize(27);
+    TextLogDamage.setCharacterSize(24);
+
 
     ///TURNO DE ZARAC
     if(TurnoJugador){
@@ -58,12 +63,19 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
         TextTurno.setString("TURNO DE ZARAC");
         if(reloj.getElapsedTime().asSeconds() >= 2){
             TextTurno.setPosition(-100, -100);
+            TextLog.setPosition(-100, -100);
+            TextLogDamage.setPosition(-100, -100);
         }
         if(B1){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
                 if(Probabilidad() >= 1){
                     Golpe.play();
                     HPE -= 10;
+                    TextLog.setPosition(420, 450);
+                    TextLog.setString("Golpe acertado!");
+                    TextLogDamage.setPosition(390, 500);
+                    TextLogDamage.setString("Realizaste 10 de Dano!");
+
                 }
                 else{
                     Miss.play();
@@ -77,12 +89,18 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() > 30){
+                if(Probabilidad() >= 30){
                     Golpe.play();
                     HPE -= 25;
+                    TextLog.setPosition(420, 450);
+                    TextLog.setString("Golpe acertado!");
+                    TextLogDamage.setPosition(390, 500);
+                    TextLogDamage.setString("Realizaste 25 de Dano!");
                 }
                 else{
                     Miss.play();
+                    TextLog.setPosition(400, 450);
+                    TextLog.setString("Fallaste el Golpe!");
                 }
                 Clickeo = true;
                 TurnoJugador = false;
@@ -92,7 +110,6 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
             }
         }
     }
-
     ///TURNO DEL ENEMIGO
     if(!TurnoJugador && reloj.getElapsedTime().asSeconds() >= 2){
         TextTurno.setPosition(-100, -100); ///RECORDAR CAMBIAR PARA BORRAR EL TEXTO
@@ -100,6 +117,10 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
             if(Probabilidad() > 1){
                 GolpeE.play();
                 *HP -= 10;
+                TextLog.setPosition(420, 450);
+                TextLog.setString("Golpe Recibido");
+                TextLogDamage.setPosition(390, 500);
+                TextLogDamage.setString("Recibiste 10 de dano!");
             }
         }
         TurnoJugador = true;
@@ -107,13 +128,16 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
         reloj.restart();
     }
 
+
     if(HPE <= 0){
         setVida = true;
         TurnoJugador = true;
         Clickeo = false;
+        TextLog.setPosition(-100, -100);
+        TextLogDamage.setPosition(-100, -100);
         return true;
     }
-    else if(HP <= 0){
+    else if(*HP <= 0){
         setVida = true;
         return false;
     }
@@ -129,6 +153,13 @@ sf::Text EnPelea::getTextHP(){
 sf::Text EnPelea::getTextHPE(){
     return TextHPE;
 }
+sf::Text EnPelea::getTextLog(){
+    return TextLog;
+}
+sf::Text EnPelea::getTextLogDamage(){
+    return TextLogDamage;
+}
+
 /*
 int EnPelea::getSalud(){
     return HP;
