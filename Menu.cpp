@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 Menu::Menu(){
-    fondo.loadFromFile("fondo/pelea.png");
+    fondo.loadFromFile("fondo/Menu.png");
     spriteFondo.setTexture(fondo);
 }
 

@@ -33,8 +33,7 @@ class EnPelea: public sf::Drawable{
         sf::Text getTextHPE();
         sf::Text getTextLog();
         sf::Text getTextLogDamage();
-        ///int getSalud();
-        bool Pelear(int* HP, int p, bool B1, bool B2);
+        bool Pelear(int* HP, int p, int d, bool B1, bool B2);
 };
 
 

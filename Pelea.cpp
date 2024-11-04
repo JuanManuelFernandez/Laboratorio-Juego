@@ -40,7 +40,7 @@ void EnPelea::setTam(int w, int h){
     rec.setSize(sf::Vector2f(w, h));
 }
 
-bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
+bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
     if(setVida){
         HPE = p;
     }
@@ -89,7 +89,7 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 30){
+                if(Probabilidad() >= 50){
                     Golpe.play();
                     HPE -= 25;
                     TextLog.setPosition(420, 450);
@@ -114,9 +114,9 @@ bool EnPelea::Pelear(int* HP, int p, bool B1, bool B2){
     if(!TurnoJugador && reloj.getElapsedTime().asSeconds() >= 2){
         TextTurno.setPosition(-100, -100); ///RECORDAR CAMBIAR PARA BORRAR EL TEXTO
         if(HPE > 0){
-            if(Probabilidad() > 1){
+            if(Probabilidad() > 25){
                 GolpeE.play();
-                *HP -= 10;
+                *HP -= d;
                 TextLog.setPosition(420, 450);
                 TextLog.setString("Golpe Recibido");
                 TextLogDamage.setPosition(390, 500);
@@ -159,9 +159,3 @@ sf::Text EnPelea::getTextLog(){
 sf::Text EnPelea::getTextLogDamage(){
     return TextLogDamage;
 }
-
-/*
-int EnPelea::getSalud(){
-    return HP;
-}
-*/

@@ -15,9 +15,9 @@
 
 class Juego{
     protected:
-        int puntos = 0, EnemigoActivo = 0;
+        int puntos, EnemigoActivo;
         int* puntoSalud;
-        bool Visibles = true, EnemigoMuerto = false, Gano = false, SobreBoton1 = false, SobreBoton2 = false;
+        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;
@@ -32,6 +32,7 @@ class Juego{
         sf::Vector2i PosicionMouse;
         sf::Event event;
     public:
+        Juego();
         void Jugar();
         ~Juego();
 };
