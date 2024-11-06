@@ -3,11 +3,19 @@
 Menu::Menu(){
     fondo.loadFromFile("fondo/Menu.png");
     spriteFondo.setTexture(fondo);
+
+    MenuMusic.openFromFile("sonidos/Musica/MenuTheme.wav");
+    MenuMusic.setVolume(20.f);
+
+    Reproducir = true;
 }
 
 void Menu::HacerMenu(){
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
+
+    MenuMusic.play();
+    MenuMusic.setLoop(Reproducir);
 
     Boton Botones[] = {
         Boton("Pixeleada.ttf", 200, 60, 335, 210, 30, 0, 0, 0, "JUGAR"),
@@ -33,6 +41,7 @@ void Menu::HacerMenu(){
                 Botones[0].setColor(sf::Color::Green);
                 if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                     window.close();
+                    MenuMusic.stop();
                     Juego objJuego;
                     objJuego.Jugar();
                 }

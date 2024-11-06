@@ -1,6 +1,11 @@
 #include "Pelea.h"
 
 EnPelea::EnPelea(){
+    TurnoJugador = true;
+    Clickeo = false;
+    EnemigoMuerto = false;
+    setVida = true;
+
     font.loadFromFile("Pixeleada.ttf");
     TextTurno.setFont(font);
     TextHP.setFont(font);
@@ -89,7 +94,7 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 50){
+                if(Probabilidad() >= 1){
                     Golpe.play();
                     HPE -= 25;
                     TextLog.setPosition(420, 450);
@@ -114,13 +119,18 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
     if(!TurnoJugador && reloj.getElapsedTime().asSeconds() >= 2){
         TextTurno.setPosition(-100, -100); ///RECORDAR CAMBIAR PARA BORRAR EL TEXTO
         if(HPE > 0){
-            if(Probabilidad() > 25){
+            if(Probabilidad() >= 25){
                 GolpeE.play();
                 *HP -= d;
                 TextLog.setPosition(420, 450);
                 TextLog.setString("Golpe Recibido");
                 TextLogDamage.setPosition(390, 500);
-                TextLogDamage.setString("Recibiste 10 de dano!");
+                TextLogDamage.setString("Recibiste " + to_string(d) + " de dano!");
+            }
+            else{
+                Miss.play();
+                TextLog.setPosition(400, 450);
+                TextLog.setString("El enemigo FALLO!");
             }
         }
         TurnoJugador = true;

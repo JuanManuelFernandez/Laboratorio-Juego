@@ -1731,10 +1731,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1730746388 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\juego.cpp
+1730923613 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\juego.cpp
 	"Juego.h"
 
-1730611690 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\juego.h
+1730925525 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -1746,6 +1746,7 @@
 	"interfazPelea.h"
 	"BotonesPelea.h"
 	"Inicializador.h"
+	"Menu.h"
 
 1730431669 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\sfml\include\sfml\audio.hpp
 	<SFML/System.hpp>
@@ -1851,7 +1852,7 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1730614330 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\pelea.h
+1730905386 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\pelea.h
 	<iostream>
 	<ctime>
 	<SFML\Graphics.hpp>
@@ -1866,14 +1867,14 @@
 	"Juego.h"
 	"Menu.h"
 
-1730610497 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\menu.h
+1730899961 c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
 
-1730610494 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\menu.cpp
+1730900111 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\menu.cpp
 	"Menu.h"
 
-1730661445 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\pelea.cpp
+1730905424 source:c:\users\juanm\onedrive\escritorio\updates_git\laboratorio-juego-main(1)\laboratorio-juego-main\pelea.cpp
 	"Pelea.h"
 

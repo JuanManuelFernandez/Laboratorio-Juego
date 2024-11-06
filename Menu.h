@@ -11,6 +11,8 @@ class Menu{
         sf::Texture fondo;
         sf::Vector2i PosicionMouse;
         sf::Event event;
+        sf::Music MenuMusic;
+        bool Reproducir;
     public:
         Menu();
         void HacerMenu();

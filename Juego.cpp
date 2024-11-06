@@ -12,6 +12,8 @@ Juego::Juego(){
     Peleando = false;
     EnCambio = false;
     PosicionFinal = false;
+    PeleaTerminada = false;
+    Reproducir = true;
 
     font.loadFromFile("Pixeleada.ttf");
 
@@ -36,12 +38,27 @@ Juego::Juego(){
 
     buffer2.loadFromFile("sonidos/heart.wav");
     soundHeart.setBuffer(buffer2);
+
+    MusicaMapa.openFromFile("sonidos/Musica/MapTheme.wav");
+    MusicaMapa.setVolume(20.f);
+
+    MusicaPelea.openFromFile("sonidos/Musica/Normal-Fight.wav");
+    MusicaPelea.setVolume(20.f);
+
+    MusicaVictoria.openFromFile("sonidos/Musica/VictoryTheme.wav");
+    MusicaVictoria.setVolume(20.f);
+
+    MusicaPeleaFinal.openFromFile("sonidos/Musica/FinalBossTheme.wav");
+    MusicaPeleaFinal.setVolume(20.f);
 }
 
 void Juego::Jugar(){
     ///INICIO DE VENTANA
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
+
+    MusicaMapa.play();
+    MusicaMapa.setLoop(Reproducir);
 
     Inicializador ejem;
     ejem.ejemplo();
@@ -109,6 +126,8 @@ void Juego::Jugar(){
     itemC2.respawn(800, 1150);
 
     InterfazAtaques.Posicion();
+
+    ///FIN DEFINICION/INSTANCIA DE LOS OBJETOS
 
     ///GAMELOOP
     while (window.isOpen()){
@@ -188,6 +207,11 @@ void Juego::Jugar(){
 
             ///PELEA ESQUELETO
             if(Zarac.esColision(Esqueleto)){
+                MusicaMapa.pause();
+                if (MusicaPelea.getStatus() != sf::Music::Playing){
+                    MusicaPelea.play();
+                    MusicaPelea.setLoop(Reproducir);
+                }
                 Visibles = false;
                 Peleando = true;
                 EnemigoActivo = 1;
@@ -209,29 +233,46 @@ void Juego::Jugar(){
                         SobreBoton2 = true;
                     }
                 }
-
-                Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2);
+                if(!PeleaTerminada){
+                    Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2);
+                }
 
                 ///MURIO SI/NO
                 if(Gano==true){
-                    ///reloj.restart();
+                    PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
-                if(EnemigoMuerto /*&& reloj.getElapsedTime().asSeconds() >= 3*/){
-                    Visibles = true;
-                    EnemigoMuerto = false;
-                    Gano = false;
-                    Peleando = false;
-                    puntos += 5;
-                    Esqueleto.Respawn(-100, -100);
-                    fondo.loadFromFile("fondo/Pixeleado.png");
+                if(EnemigoMuerto){
+                    fondo.loadFromFile("fondo/EnNegro.png");
+                    MusicaPelea.stop();
+                    if(MusicaVictoria.getStatus() != sf::Music::Playing){
+                        MusicaVictoria.play();
+                        MusicaVictoria.setLoop(Reproducir);
+                    }
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                        Visibles = true;
+                        PeleaTerminada = false;
+                        EnemigoMuerto = false;
+                        Gano = false;
+                        Peleando = false;
+                        puntos += 5;
+                        Esqueleto.Respawn(-100, -100);
+                        MusicaVictoria.stop();
+                        MusicaMapa.play();
+                        fondo.loadFromFile("fondo/Pixeleado.png");
+                    }
                 }
                 SobreBoton1 = false;
                 SobreBoton2 = false;
             }
             ///PELEA RATA
             if(Zarac.esColision(Rata)){
+                MusicaMapa.pause();
+                if (MusicaPelea.getStatus() != sf::Music::Playing){
+                    MusicaPelea.play();
+                    MusicaPelea.setLoop(Reproducir);
+                }
                 Visibles = false;
                 Peleando = true;
                 EnemigoActivo = 2;
@@ -253,23 +294,35 @@ void Juego::Jugar(){
                         SobreBoton2 = true;
                     }
                 }
-
-                Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2);
+                if(!PeleaTerminada){
+                    Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2);
+                }
 
                 ///MURIO SI/NO
                 if(Gano==true){
-                    ///reloj.restart();
+                    PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
-                    Visibles = true;
-                    EnemigoMuerto = false;
-                    Gano = false;
-                    Peleando = false;
-                    puntos += 5;
-                    Rata.Respawn(-100, -100);
-                    fondo.loadFromFile("fondo/Pixeleado.png");
+                    fondo.loadFromFile("fondo/EnNegro.png");
+                    MusicaPelea.stop();
+                    if(MusicaVictoria.getStatus() != sf::Music::Playing){
+                        MusicaVictoria.play();
+                        MusicaVictoria.setLoop(Reproducir);
+                    }
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                        Visibles = true;
+                        PeleaTerminada = false;
+                        EnemigoMuerto = false;
+                        Gano = false;
+                        Peleando = false;
+                        puntos += 5;
+                        Rata.Respawn(-200, -200);
+                        MusicaVictoria.stop();
+                        MusicaMapa.play();
+                        fondo.loadFromFile("fondo/Pixeleado.png");
+                    }
                 }
                 SobreBoton1 = false;
                 SobreBoton2 = false;
@@ -285,6 +338,11 @@ void Juego::Jugar(){
             }
             ///PELEA ARTORIAS
             if(Zarac.esColision(Artorias)){
+                MusicaMapa.pause();
+                if(MusicaPeleaFinal.getStatus() != sf::Music::Playing){
+                    MusicaPeleaFinal.play();
+                    MusicaPeleaFinal.setLoop(Reproducir);
+                }
                 Visibles = false;
                 Peleando = true;
                 EnemigoActivo = 2;
@@ -306,23 +364,46 @@ void Juego::Jugar(){
                         SobreBoton2 = true;
                     }
                 }
-
-                Gano = Pelea.Pelear(puntoSalud, 100, 15, SobreBoton1, SobreBoton2);
-
+                if(!PeleaTerminada){
+                    Gano = Pelea.Pelear(puntoSalud, 100, 15, SobreBoton1, SobreBoton2);
+                }
                 ///MURIO SI/NO
                 if(Gano==true){
-                    ///reloj.restart();
+                    PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
-                    Visibles = true;
-                    EnemigoMuerto = false;
-                    Gano = false;
-                    Peleando = false;
-                    puntos += 5;
-                    Artorias.Respawn(-300, -300);
-                    fondo.loadFromFile("fondo/EscenarioFinal.png");
+                    fondo.loadFromFile("fondo/Mensaje.png");
+                    ///MusicaPeleaFinal.stop();
+                    /*
+                    if(MusicaVictoria.getStatus() != sf::Music::Playing){
+                        MusicaVictoria.play();
+                        MusicaVictoria.setLoop(Reproducir);
+                    }
+                    */
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                        /*
+                        Visibles = true;
+                        PeleaTerminada = false;
+                        EnemigoMuerto = false;
+                        Gano = false;
+                        Peleando = false;
+                        puntos += 5;
+                        Artorias.Respawn(-300, -300);
+                        MusicaVictoria.stop();
+                        MusicaMapa.play(),
+                        fondo.loadFromFile("fondo/EscenarioFinal.png");
+                        */
+                        fondo.loadFromFile("fondo/PantallaFinal.png");
+                    }
+                    /*
+                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+                        window.close();
+                        Menu objMenu;
+                        objMenu.HacerMenu();
+                    }
+                    */
                 }
                 SobreBoton1 = false;
                 SobreBoton2 = false;
@@ -365,23 +446,25 @@ void Juego::Jugar(){
             }
 
             else{
-                window.draw(PersonajeP);
-                ///VERIFICAMOS EN QUE PELEA ESTAMOS
-                if(EnemigoActivo==1){
-                    window.draw(EnemigoE);
-                }
-                else if(EnemigoActivo==2){
-                    window.draw(EnemigoR);
-                }
-                window.draw(Pelea.getTextHP());
-                window.draw(Pelea.getTextHPE());
-                window.draw(Pelea.getTextoTurno());
-                window.draw(Pelea.getTextLog());
-                window.draw(Pelea.getTextLogDamage());
+                if(EnemigoMuerto==false){
+                    window.draw(PersonajeP);
+                    ///VERIFICAMOS EN QUE PELEA ESTAMOS
+                    if(EnemigoActivo==1){
+                        window.draw(EnemigoE);
+                    }
+                    else if(EnemigoActivo==2){
+                        window.draw(EnemigoR);
+                    }
+                    window.draw(Pelea.getTextHP());
+                    window.draw(Pelea.getTextHPE());
+                    window.draw(Pelea.getTextoTurno());
+                    window.draw(Pelea.getTextLog());
+                    window.draw(Pelea.getTextLogDamage());
 
-                window.draw(InterfazAtaques);
-                window.draw(Boton1);
-                window.draw(Boton2);
+                    window.draw(InterfazAtaques);
+                    window.draw(Boton1);
+                    window.draw(Boton2);
+                }
             }
         }
         else{
@@ -394,17 +477,19 @@ void Juego::Jugar(){
                 window.draw(TextSalud);
             }
             else{
-                window.draw(PersonajeP);
-                window.draw(EnemigoFinal);
-                window.draw(Pelea.getTextHP());
-                window.draw(Pelea.getTextHPE());
-                window.draw(Pelea.getTextoTurno());
-                window.draw(Pelea.getTextLog());
-                window.draw(Pelea.getTextLogDamage());
+                if(EnemigoMuerto==false){
+                    window.draw(PersonajeP);
+                    window.draw(EnemigoFinal);
+                    window.draw(Pelea.getTextHP());
+                    window.draw(Pelea.getTextHPE());
+                    window.draw(Pelea.getTextoTurno());
+                    window.draw(Pelea.getTextLog());
+                    window.draw(Pelea.getTextLogDamage());
 
-                window.draw(InterfazAtaques);
-                window.draw(Boton1);
-                window.draw(Boton2);
+                    window.draw(InterfazAtaques);
+                    window.draw(Boton1);
+                    window.draw(Boton2);
+                }
             }
         }
         ///DISPLAY

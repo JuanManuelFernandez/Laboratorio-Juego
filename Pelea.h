@@ -18,9 +18,9 @@ class EnPelea: public sf::Drawable{
         sf::Font font;
         sf::Text TextHP, TextHPE, TextTurno, TextLog, TextLogDamage;
         sf::Clock reloj;
-        bool TurnoJugador = true, Clickeo = false, EnemigoMuerto = false, setVida = true;
+        bool TurnoJugador, Clickeo, EnemigoMuerto, setVida;
         int HPE = 0;
-        string Enlace;
+        string Enlace, EnlaceBuff;
     public:
         EnPelea();
         void Posicion(float x, float y);

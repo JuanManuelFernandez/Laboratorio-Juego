@@ -12,12 +12,13 @@
 #include "interfazPelea.h"
 #include "BotonesPelea.h"
 #include "Inicializador.h"
+#include "Menu.h"
 
 class Juego{
     protected:
         int puntos, EnemigoActivo;
         int* puntoSalud;
-        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal;
+        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;
@@ -27,10 +28,9 @@ class Juego{
         ///SONIDO
         sf::SoundBuffer buffer, buffer2;
         sf::Sound soundItem, soundHeart;
-        ///RELOJ PARA TRANSICIÓN
-        ///sf::Clock reloj;
         sf::Vector2i PosicionMouse;
-        sf::Event event;
+        ///MUSICA
+        sf::Music MusicaMapa, MusicaPelea, MusicaPeleaFinal, MusicaVictoria;
     public:
         Juego();
         void Jugar();
