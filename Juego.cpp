@@ -15,7 +15,7 @@ Juego::Juego(){
     PeleaTerminada = false;
     Reproducir = true;
     fondoMensaje= true;
-
+    fondoMensajeFinal = false;
     font.loadFromFile("Pixeleada.ttf");
 
     text.setFont(font);
@@ -375,9 +375,9 @@ void Juego::Jugar(){
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
-                        if(fondoMensaje){
+                    if(fondoMensaje){
                         fondo.loadFromFile("fondo/Mensaje.png");
-                        }
+                    }
                     if(MusicaPeleaFinal.getStatus() == sf::Music::Playing){
                         MusicaPeleaFinal.pause();
                     }
@@ -388,7 +388,8 @@ void Juego::Jugar(){
                     }
                     */
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-
+                        fondoMensaje=false;
+                        fondoMensajeFinal = true;
                         /*
                         Visibles = true;
                         PeleaTerminada = false;
@@ -401,6 +402,8 @@ void Juego::Jugar(){
                         MusicaMapa.play(),
                         fondo.loadFromFile("fondo/EscenarioFinal.png");
                         */
+                    }
+                    if(fondoMensajeFinal){
                         fondo.loadFromFile("fondo/PantallaFinal.png");
                     }
                     /*
