@@ -18,7 +18,7 @@ class Juego{
     protected:
         int puntos, EnemigoActivo;
         int* puntoSalud;
-        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir;
+        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir, fondoMensaje;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;

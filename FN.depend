@@ -1070,11 +1070,11 @@
 1730425305 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\colisiones.cpp
 	"colisiones.h"
 
-1730425305 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\desarrollo.cpp
+1730927006 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\desarrollo.cpp
 	"funciones.h"
 	"casa1.h"
 
-1730425305 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\funciones.h
+1730927006 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\funciones.h
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
@@ -1108,10 +1108,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1730428144 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
+1730927989 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
 	"Juego.h"
 
-1730426021 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
+1730927309 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -1123,6 +1123,7 @@
 	"interfazPelea.h"
 	"BotonesPelea.h"
 	"Inicializador.h"
+	"Menu.h"
 
 1730425305 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\sfml\include\sfml\audio.hpp
 	<SFML/System.hpp>
@@ -1228,29 +1229,29 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1730430583 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.h
+1730927006 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.h
 	<iostream>
 	<ctime>
 	<SFML\Graphics.hpp>
 	<SFML/Audio.hpp>
 	"botones.h"
 
-1730425305 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\main.cpp
+1730927006 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\main.cpp
 	"Juego.h"
 	"Menu.h"
 
-1730425304 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
+1730927006 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
 
-1730425304 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
+1730927006 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
 	"Menu.h"
 
-1730431372 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.cpp
+1730927006 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.cpp
 	"Pelea.h"
 
-1730426558 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\inicializador.h
+1730927005 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\inicializador.h
 	<SFML\Graphics.hpp>
 	<iostream>
 

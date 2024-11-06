@@ -14,6 +14,7 @@ Juego::Juego(){
     PosicionFinal = false;
     PeleaTerminada = false;
     Reproducir = true;
+    fondoMensaje= true;
 
     font.loadFromFile("Pixeleada.ttf");
 
@@ -339,7 +340,7 @@ void Juego::Jugar(){
             ///PELEA ARTORIAS
             if(Zarac.esColision(Artorias)){
                 MusicaMapa.pause();
-                if(MusicaPeleaFinal.getStatus() != sf::Music::Playing){
+                if(MusicaPeleaFinal.getStatus() != sf::Music::Playing && !EnemigoMuerto){
                     MusicaPeleaFinal.play();
                     MusicaPeleaFinal.setLoop(Reproducir);
                 }
@@ -374,8 +375,12 @@ void Juego::Jugar(){
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
-                    fondo.loadFromFile("fondo/Mensaje.png");
-                    ///MusicaPeleaFinal.stop();
+                        if(fondoMensaje){
+                        fondo.loadFromFile("fondo/Mensaje.png");
+                        }
+                    if(MusicaPeleaFinal.getStatus() == sf::Music::Playing){
+                        MusicaPeleaFinal.pause();
+                    }
                     /*
                     if(MusicaVictoria.getStatus() != sf::Music::Playing){
                         MusicaVictoria.play();
@@ -383,6 +388,7 @@ void Juego::Jugar(){
                     }
                     */
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
+
                         /*
                         Visibles = true;
                         PeleaTerminada = false;
