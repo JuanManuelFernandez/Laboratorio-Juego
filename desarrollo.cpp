@@ -92,3 +92,7 @@ sf::Vector2f Personaje::getVelocidad() const{
 bool Personaje::getCambio(){
     return CambioEscena;
 }
+
+void Personaje::setCambio(bool c){
+    CambioEscena = c;
+}

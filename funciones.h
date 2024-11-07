@@ -17,6 +17,7 @@ class Personaje: public sf::Drawable, public Colision{
         void Respawn(float x, float y);
         sf::FloatRect getBounds() const override;
         void setPosicion(const sf::Vector2f& posicion);
+        void setCambio(bool c);
         sf::Vector2f getPosicion();
         sf::Vector2f getVelocidad() const;
         bool getCambio();

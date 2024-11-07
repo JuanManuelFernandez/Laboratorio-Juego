@@ -94,7 +94,7 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 1){
+                if(Probabilidad() >= 30){
                     Golpe.play();
                     HPE -= 25;
                     TextLog.setPosition(420, 450);
@@ -119,7 +119,7 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
     if(!TurnoJugador && reloj.getElapsedTime().asSeconds() >= 2){
         TextTurno.setPosition(-100, -100); ///RECORDAR CAMBIAR PARA BORRAR EL TEXTO
         if(HPE > 0){
-            if(Probabilidad() >= 25){
+            if(Probabilidad() >= 30){
                 GolpeE.play();
                 *HP -= d;
                 TextLog.setPosition(420, 450);
@@ -137,7 +137,6 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         Clickeo = false;
         reloj.restart();
     }
-
 
     if(HPE <= 0){
         setVida = true;

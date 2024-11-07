@@ -17,19 +17,19 @@ class Juego{
     protected:
         int puntos, EnemigoActivo;
         int* puntoSalud;
-        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir, fondoMensaje, fondoMensajeFinal;
+        bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir, fondoMensaje, fondoMensajeFinal, Muerto, CheckPoint;
         ///FONDO
         sf::Texture fondo;
         sf::Sprite spriteFondo;
         ///CONTADOR
         sf::Font font;
-        sf::Text text, TextSalud;
+        sf::Text text, TextSalud, TextMenu;
         ///SONIDO
         sf::SoundBuffer buffer, buffer2;
         sf::Sound soundItem, soundHeart;
         sf::Vector2i PosicionMouse;
         ///MUSICA
-        sf::Music MusicaMapa, MusicaPelea, MusicaPeleaFinal, MusicaVictoria;
+        sf::Music MusicaMapa, MusicaPelea, MusicaPeleaFinal, MusicaVictoria, MusicaDerrota, MusicaFinal;
     public:
         Juego();
         void Jugar();
