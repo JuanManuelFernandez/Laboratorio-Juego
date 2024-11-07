@@ -153,7 +153,7 @@ void Juego::Jugar(){
         }
         ///UPDATE
         Zarac.Update(Peleando); /// chequea si se movio wasd (Peleando es un bool por si esta en una pelea no se pueda mover)
-        if(Zarac.getCambio()){
+        if(Zarac.getCambio()){ /// Zarac getCambio chequea si el personaje fue a la derecha del mapa y carga el siguiente mapa
             fondo.loadFromFile("fondo/EscenarioFinal.png");
             EnCambio = true;
             if(PosicionFinal==false){
@@ -161,7 +161,7 @@ void Juego::Jugar(){
                 PosicionFinal = true;
             }
         }
-        if(EnCambio==false){
+        if(EnCambio==false){ /// Si en cambio es false Pone sonidos y colisiones a los items del primer mapa y sino las del segundo
             if(Zarac.esColision(item)){
                 puntos++;
                 soundItem.play();
@@ -183,7 +183,7 @@ void Juego::Jugar(){
                 item4.hide();
             }
 
-            if(Zarac.esColision(itemC) && *puntoSalud<100){
+            if(Zarac.esColision(itemC) && *puntoSalud<100){ /// el corazon recupera 50 de vida (no mas de 100)
                 if(*puntoSalud + 50 > 100){
                     *puntoSalud = 100;
                 }
@@ -203,7 +203,7 @@ void Juego::Jugar(){
                 soundHeart.play();
                 itemC2.hide();
             }
-
+            /// Colisiones con las casas
             if(Zarac.esColision(formas[0])){
                 Zarac.setPosicion(Zarac.getPosicion() - Zarac.getVelocidad());
             }
@@ -218,24 +218,29 @@ void Juego::Jugar(){
             }
 
             ///PELEA ESQUELETO
-            if(Zarac.esColision(Esqueleto)){
-                MusicaMapa.pause();
-                if (MusicaPelea.getStatus() != sf::Music::Playing){
+            if(Zarac.esColision(Esqueleto)){ /// Solo si esta en colision con el esqueleto (No te podes mover)
+                MusicaMapa.pause(); /// pausa musica mapa
+                if (MusicaPelea.getStatus() != sf::Music::Playing){ /// si la musica de la pelea no se reproduce la activa
                     MusicaPelea.play();
                     MusicaPelea.setLoop(Reproducir);
                 }
-                Visibles = false;
-                Peleando = true;
-                EnemigoActivo = 1;
-                fondo.loadFromFile("fondo/pelea.png");
+                Visibles = false; ///visibles drawea los objetos del primer mapa
+                Peleando = true; /// peleando drawea los personajes y objetos en la pelea
+                EnemigoActivo = 1; /// Para ver que enemigo dibujar (1 esqueleto, 2 rata)
+                fondo.loadFromFile("fondo/pelea.png"); ///setea el fondo de la pelea
+
+                ///setea la textura del personaje, tamaño y posicion
                 PersonajeP.setTextura("Personaje/ZaracFight.png");
                 PersonajeP.setTam(150, 160);
                 PersonajeP.Posicion(450, 220);
 
+                ///setea la textura del Enemigo tamaño y posicion
                 EnemigoE.setTextura("Enemigos/Esqueleto.png");
                 EnemigoE.setTam(80, 160);
                 EnemigoE.Posicion(250, 220);
 
+                ///Si el mouse se mueve toma la posicion del mouse y si el boton 1(ligero) o 2(Pesado) contiene al mouse SobreBoton se pone en true
+                /// Esto es para chequear que boton tocamos si el 1 o el 2
                 if(event.type==sf::Event::MouseMoved){
                     PosicionMouse = sf::Mouse::getPosition(window);
                     if(Boton1.getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
@@ -245,8 +250,8 @@ void Juego::Jugar(){
                         SobreBoton2 = true;
                     }
                 }
-                if(!PeleaTerminada){
-                    Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2);
+                if(!PeleaTerminada){ /// PeleaTerminada se setea al terminar 1 vez la pelea, si no al estar en colision las peleas son infinitas
+                Gano = Pelea.Pelear(puntoSalud, 50, 10, SobreBoton1, SobreBoton2); ///Pelear recibe (Tus puntos de vida, Vida del enemigo, Daño del enemigo, y si sobreBoton 1 o 2 es true)
                 }
 
                 ///MURIO SI/NO
@@ -256,25 +261,28 @@ void Juego::Jugar(){
                 }
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
-                    fondo.loadFromFile("fondo/EnNegro.png");
-                    MusicaPelea.stop();
-                    if(MusicaVictoria.getStatus() != sf::Music::Playing){
+                    fondo.loadFromFile("fondo/EnNegro.png"); ///cambia el fondo
+                    MusicaPelea.stop(); /// Pausa la musica de la pelea
+                    if(MusicaVictoria.getStatus() != sf::Music::Playing){ /// Si la musica de victoria no se reproducia (siempre no) la reproduce
                         MusicaVictoria.play();
                         MusicaVictoria.setLoop(Reproducir);
                     }
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-                        Visibles = true;
+                        Visibles = true; /// Vuelven Las casas, enemigos, items al mapa
+                        /// Setea los bool a como estaban antes de la pelea para las proximas
                         PeleaTerminada = false;
                         EnemigoMuerto = false;
                         Gano = false;
-                        Peleando = false;
+                        Peleando = false; /// El personaje se puede volver a mover
                         puntos += 5;
-                        Esqueleto.Respawn(-100, -100);
+                        Esqueleto.Respawn(-100, -100); /// sacamos al esqueleto del mapa
+                        ///Pausa la musica de victoria y reproduce la del mapa
                         MusicaVictoria.stop();
                         MusicaMapa.play();
-                        fondo.loadFromFile("fondo/Pixeleado.png");
+                        fondo.loadFromFile("fondo/Pixeleado.png"); /// vuelve al fondo del pueblo
                     }
                 }
+                /// Vuelve a como estaban antes de la pelea
                 SobreBoton1 = false;
                 SobreBoton2 = false;
             }
@@ -416,7 +424,7 @@ void Juego::Jugar(){
                 SobreBoton2 = false;
             }
         }
-
+        /// Muestra los puntos y la salud
         text.setString(std::to_string(puntos));
         TextSalud.setString("Salud: " + std::to_string(*puntoSalud));
 
@@ -424,12 +432,12 @@ void Juego::Jugar(){
         window.clear();
 
         ///DRAW FONDO
-        window.draw(spriteFondo);
+        window.draw(spriteFondo); ///pueblo
 
-        ///DRAW PJ
-        if(Zarac.getCambio()==false){
-            if(Visibles){
-                ///DRAW PJ
+        ///DRAW PJ ---- Esto solo los dibuja
+        if(Zarac.getCambio()==false){ /// Chequea si estamos en el primer mapa
+            if(Visibles){ /// Si visibles es true se dibujan los objetos del mapa
+                ///DRAW PJ, Enemigos, Casas
                 window.draw(Zarac);
                 window.draw(Esqueleto);
                 window.draw(Rata);
@@ -448,52 +456,57 @@ void Juego::Jugar(){
                 ///DRAW CORAZON
                 window.draw(itemC);
                 window.draw(itemC2);
+
+                ///DRAW TEXTOS puntaje y salud
                 window.draw(text);
                 window.draw(TextSalud);
             }
-
-            else{
-                if(EnemigoMuerto==false){
+            else{ /// Al estar en Pelea pone visibles en false
+                if(EnemigoMuerto==false){ /// Si el enemigo no esta muerto dibuja a zarac y enemigo
                     window.draw(PersonajeP);
                     ///VERIFICAMOS EN QUE PELEA ESTAMOS
                     if(EnemigoActivo==1){
-                        window.draw(EnemigoE);
+                        window.draw(EnemigoE); ///esqueleto
                     }
                     else if(EnemigoActivo==2){
-                        window.draw(EnemigoR);
+                        window.draw(EnemigoR); /// rata
                     }
+                    /// Textos de vida, vidaEnemigo y combatLog
                     window.draw(Pelea.getTextHP());
                     window.draw(Pelea.getTextHPE());
                     window.draw(Pelea.getTextoTurno());
                     window.draw(Pelea.getTextLog());
                     window.draw(Pelea.getTextLogDamage());
-
+                    ///La interfaz de ataque (Cuadrado con "ataque ligero y ataque fuerte")
                     window.draw(InterfazAtaques);
+                    /// Dibuja los botones para poder atacar
                     window.draw(Boton1);
                     window.draw(Boton2);
                 }
             }
         }
-        else{
-            if(Visibles){
-                window.draw(Zarac);
-                window.draw(Artorias);
-                window.draw(formas[5]);
-                window.draw(formas[6]);
-                window.draw(text);
-                window.draw(TextSalud);
+        else{ /// Al estar en el segundo mapa
+            if(Visibles){ /// Al estar en el mapa
+                window.draw(Zarac); ///personaje
+                window.draw(Artorias); /// Artorias jefe final
+                window.draw(formas[5]); ///casa
+                window.draw(formas[6]); /// casa2
+                window.draw(text); ///Textos puntaje
+                window.draw(TextSalud); /// Textos de vida
             }
-            else{
+            else{ /// Al estar en colision con el enemigo (pelea)
                 if(EnemigoMuerto==false){
-                    window.draw(PersonajeP);
-                    window.draw(EnemigoFinal);
+                    window.draw(PersonajeP); ///Zarac
+                    window.draw(EnemigoFinal); ///Artorias
+                    /// Textos de vida, vidaEnemigo y combatLog
                     window.draw(Pelea.getTextHP());
                     window.draw(Pelea.getTextHPE());
                     window.draw(Pelea.getTextoTurno());
                     window.draw(Pelea.getTextLog());
                     window.draw(Pelea.getTextLogDamage());
-
+                    ///La interfaz de ataque (Cuadrado con "ataque ligero y ataque fuerte")
                     window.draw(InterfazAtaques);
+                    /// Dibuja los botones para poder atacar
                     window.draw(Boton1);
                     window.draw(Boton2);
                 }
