@@ -1,6 +1,7 @@
 #include "Juego.h"
 
 Juego::Juego(){
+    /// inicializar variables
     puntoSalud = new int(100);
     puntos = 0;
     EnemigoActivo = 0;
@@ -16,24 +17,31 @@ Juego::Juego(){
     Reproducir = true;
     fondoMensaje= true;
     fondoMensajeFinal = false;
+
+    /// Setear fuente
     font.loadFromFile("Pixeleada.ttf");
 
+    /// setear fuentes
     text.setFont(font);
     TextSalud.setFont(font);
     text.setColor(sf::Color::White);
     TextSalud.setColor(sf::Color::White);
     text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
+    /// tamaño y posicion del puntaje
     text.setCharacterSize(30);
     text.setPosition(10, 10);
 
+    //tamaño y posicion de la vida
     TextSalud.setCharacterSize(30);
     TextSalud.setPosition(70, 10);
 
+    /// fondo Pueblo
     fondo.loadFromFile("fondo/Pixeleado.png");
-
     spriteFondo.setTexture(fondo);
 
+
+    /// Setear buffer y volumenes para items, corazones, musica al estar en el pueblo, pelea, boss final
     buffer.loadFromFile("sonidos/item.wav");
     soundItem.setBuffer(buffer);
 
@@ -58,48 +66,54 @@ void Juego::Jugar(){
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
 
+    /// Suena la musica del mapa en bucle
     MusicaMapa.play();
     MusicaMapa.setLoop(Reproducir);
 
-    ///INSTANCIA DE LOS OBJ DE CLASE(MAPA)
+    ///INSTANCIA DE LOS personajes y enemigos para draw en el mapa (personaje, rata, esqueleto, artorias(jefe))
     Personaje Zarac;
+      /// (Enlace para cargar los personajes, altura, ancho)
     Enemigo Esqueleto("Enemigos/Esqueleto.png", 60, 120);
     Enemigo Rata("Enemigos/rata2.png", 180, 120);
     Enemigo Artorias("Enemigos/ArtoriasMap.png", 250, 250);
 
+    /// cuadrado == casa1.h
     Cuadrado formas[] = {
         ///MAPA MAIN
-        Cuadrado("objetos/derrumbada.png", 153, 75),
-        Cuadrado("objetos/casa3.png", 178, 169),
-        Cuadrado("objetos/casa4.png", 171, 153),
-        Cuadrado("objetos/casa2.png", 80, 150),
-        Cuadrado("objetos/solaire.png", 61, 162),
+        /// Declarar casas y tamaños (Enlace para cargar las casas, altura, ancho) -> constructor
+        Cuadrado("objetos/derrumbada.png", 153, 75), /// casa arriba izquierda
+        Cuadrado("objetos/casa3.png", 178, 169), /// casa abajo derecha
+        Cuadrado("objetos/casa4.png", 171, 153), /// casa abajo izquierda
+        Cuadrado("objetos/casa2.png", 80, 150), /// casa abajo derecha
+        Cuadrado("objetos/solaire.png", 61, 162), /// estatua solaire
         ///MAPA FINAL
         Cuadrado("objetos/CasaDestruida.png", 170, 169),
         Cuadrado("objetos/Escombros.png", 200, 100)
     };
-
+    /// intancia objetos en el mapa que dan exp
     Cristal item("objetos/Gema1.png");
     Cristal item2("objetos/Gema2.png");
     Cristal item3("objetos/Gema1.png");
     Cristal item4("objetos/Gema2.png");
-
+    /// intancia objetos corazon en el mapa que recuperan hp
     Corazon itemC, itemC2;
 
     ///INSTANCIA DE LOS OBJ DE CLASE(PELEA)
-    Interfaz InterfazAtaques;
-    EnPelea Pelea;
-    EnPelea PersonajeP;
-    EnPelea EnemigoE;
-    EnPelea EnemigoR;
-    EnPelea EnemigoFinal;
+    Interfaz InterfazAtaques; /// -> interfaz -> rectangulo que contiene ataque y ataque fuerte
+    EnPelea Pelea; /// objeto para llamar a la pelea
+      /// personajes que estan en la pelea
+    EnPelea PersonajeP; ///zarac
+    EnPelea EnemigoE; /// esqueleto
+    EnPelea EnemigoR; /// rata
+    EnPelea EnemigoFinal; /// artorias
 
+    /// botones para clickear y pegar
     BotonesPelea Boton1;
     Boton1.Posicion(250, 450);
     BotonesPelea Boton2;
     Boton2.Posicion(250, 500);
 
-    ///RESPAWNS PERSONAJE, ENEMIGOS, ESTRUCTURAS
+    ///RESPAWNS PERSONAJE, posicion de objetos en el mapa y enemigos,
     Zarac.Respawn(410, 0);
     Esqueleto.Respawn(270, 80);
     Rata.Respawn(50, 230);
@@ -138,7 +152,7 @@ void Juego::Jugar(){
             }
         }
         ///UPDATE
-        Zarac.Update(Peleando);
+        Zarac.Update(Peleando); /// chequea si se movio wasd (Peleando es un bool por si esta en una pelea no se pueda mover)
         if(Zarac.getCambio()){
             fondo.loadFromFile("fondo/EscenarioFinal.png");
             EnCambio = true;
@@ -391,16 +405,12 @@ void Juego::Jugar(){
                         fondo.loadFromFile("fondo/PantallaFinal.png");
                         //Chequea que hallas presionado enter anteriormente que cambio fondoMnesjae a false
                         if(fondoMensaje== false && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                           window.close();
-                       }
-                    }
-                    /*
-                    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
                         window.close();
+                        MusicaVictoria.pause();
                         Menu objMenu;
                         objMenu.HacerMenu();
+                       }
                     }
-                    */
                 }
                 SobreBoton1 = false;
                 SobreBoton2 = false;

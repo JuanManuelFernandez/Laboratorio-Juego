@@ -59,6 +59,7 @@ void Personaje::Update(bool P){
     }
 
     ///HACEMOS QUE EL PERSONAJE NO SE SALGA DE LA PANTALLA PARA ABAJO Y PARA LA DER
+    /// Si va a la derecha cambia la escena
     if(_sprite.getGlobalBounds().left + _sprite.getGlobalBounds().width > 800){
         _sprite.setPosition(800 - (_sprite.getGlobalBounds().width - _sprite.getOrigin().x), _sprite.getPosition().y);
         CambioEscena = true;
