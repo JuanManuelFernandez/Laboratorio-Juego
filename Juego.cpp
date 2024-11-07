@@ -381,30 +381,21 @@ void Juego::Jugar(){
                     if(MusicaPeleaFinal.getStatus() == sf::Music::Playing){
                         MusicaPeleaFinal.pause();
                     }
-                    /*
                     if(MusicaVictoria.getStatus() != sf::Music::Playing){
                         MusicaVictoria.play();
                         MusicaVictoria.setLoop(Reproducir);
                     }
-                    */
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
                         fondoMensaje=false;
                         fondoMensajeFinal = true;
-                        /*
-                        Visibles = true;
-                        PeleaTerminada = false;
-                        EnemigoMuerto = false;
-                        Gano = false;
-                        Peleando = false;
-                        puntos += 5;
-                        Artorias.Respawn(-300, -300);
-                        MusicaVictoria.stop();
-                        MusicaMapa.play(),
-                        fondo.loadFromFile("fondo/EscenarioFinal.png");
-                        */
                     }
+                    /// Si presionaste enter y fondoMensajeFinal se puso en true cambia al otro fondo
                     if(fondoMensajeFinal){
                         fondo.loadFromFile("fondo/PantallaFinal.png");
+                        //Chequea que hallas presionado enter anteriormente que cambio fondoMnesjae a false
+                        if(fondoMensaje== false && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+                           window.close();
+                       }
                     }
                     /*
                     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
