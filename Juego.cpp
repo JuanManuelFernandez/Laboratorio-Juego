@@ -61,9 +61,6 @@ void Juego::Jugar(){
     MusicaMapa.play();
     MusicaMapa.setLoop(Reproducir);
 
-    Inicializador ejem;
-    ejem.ejemplo();
-
     ///INSTANCIA DE LOS OBJ DE CLASE(MAPA)
     Personaje Zarac;
     Enemigo Esqueleto("Enemigos/Esqueleto.png", 60, 120);

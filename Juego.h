@@ -11,7 +11,6 @@
 #include "Pelea.h"
 #include "interfazPelea.h"
 #include "BotonesPelea.h"
-#include "Inicializador.h"
 #include "Menu.h"
 
 class Juego{

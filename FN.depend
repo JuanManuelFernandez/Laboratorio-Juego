@@ -1108,10 +1108,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1730928719 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
+1730944313 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
 	"Juego.h"
 
-1730928719 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
+1730944769 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -1122,7 +1122,6 @@
 	"Pelea.h"
 	"interfazPelea.h"
 	"BotonesPelea.h"
-	"Inicializador.h"
 	"Menu.h"
 
 1730425305 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\sfml\include\sfml\audio.hpp
