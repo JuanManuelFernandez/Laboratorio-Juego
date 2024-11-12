@@ -2355,10 +2355,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1730995401 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.cpp
+1731435307 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.cpp
 	"Juego.h"
 
-1730995773 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.h
+1731438816 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -2482,18 +2482,27 @@
 	<SFML/Audio.hpp>
 	"botones.h"
 
-1730951974 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.h
+1731441911 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
+	"CajaDeTexto.h"
 
 1730951974 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\main.cpp
 	"Juego.h"
 	"Menu.h"
 
-1730951974 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.cpp
+1731442522 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.cpp
 	"Menu.h"
 
-1730995975 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\pelea.cpp
+1731442305 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\pelea.cpp
 	"Pelea.h"
+
+1731441867 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\cajadetexto.cpp
+	"CajaDeTexto.h"
+
+1731441859 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\cajadetexto.h
+	<SFML\Graphics.hpp>
+	<iostream>
+	"sstream"
 

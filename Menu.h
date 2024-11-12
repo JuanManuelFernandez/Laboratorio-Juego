@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Juego.h"
 #include "botones.h"
+#include "CajaDeTexto.h"
 
 class Menu{
     protected:
@@ -12,7 +13,7 @@ class Menu{
         sf::Vector2i PosicionMouse;
         sf::Event event;
         sf::Music MenuMusic;
-        bool Reproducir;
+        bool Reproducir, Visibles, Activos;
     public:
         Menu();
         void HacerMenu();

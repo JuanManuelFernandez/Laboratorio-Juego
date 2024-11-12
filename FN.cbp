@@ -41,6 +41,8 @@
 		</Linker>
 		<Unit filename="BotonesPelea.cpp" />
 		<Unit filename="BotonesPelea.h" />
+		<Unit filename="CajaDeTexto.cpp" />
+		<Unit filename="CajaDeTexto.h" />
 		<Unit filename="Inicializador.cpp">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
