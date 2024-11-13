@@ -21,6 +21,6 @@ int Puntaje::getPuntaje(){
 }
 
 void Puntaje::Mostrar(){
-    cout << Nombre << endl;
-    cout << Puntos << endl;
+    cout << "Nombre: " <<  Nombre << endl;
+    cout << "Puntaje: " <<  Puntos << endl;
 }

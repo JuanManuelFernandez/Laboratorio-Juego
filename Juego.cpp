@@ -19,7 +19,7 @@ Juego::Juego(){
     fondoMensajeFinal = false;
     Muerto = false;
     CheckPoint = false;
-
+    puntajeAgregado = true;
     /// Setear fuente
     font.loadFromFile("Pixeleada.ttf");
 
@@ -475,6 +475,12 @@ void Juego::Jugar(string* n){
                 ///RESETEA SI EL ENEMIGO MURIO
                 if(EnemigoMuerto){
                     if(fondoMensaje){
+                        if(puntajeAgregado){
+                        *puntos += 10;
+                        objPuntos.setPuntaje(puntos);
+                        objPuntos.Mostrar();
+                        puntajeAgregado = false;
+                        }
                         fondo.loadFromFile("fondo/Mensaje.png");
                     }
                     if(MusicaPeleaFinal.getStatus() == sf::Music::Playing){
