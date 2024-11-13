@@ -7,6 +7,8 @@
 #include "CajaDeTexto.h"
 #include "Puntaje.h"
 #include "ArchivoPuntaje.h"
+#include <memory>
+
 
 class Menu{
     protected:
@@ -16,7 +18,8 @@ class Menu{
         sf::Event event;
         sf::Music MenuMusic;
         bool Reproducir, Visibles, Activos, BotonPuntos;
-        string* NombreEscrito;
+        std::unique_ptr<std::string> NombreEscrito;
+
     public:
         Menu();
         void HacerMenu();

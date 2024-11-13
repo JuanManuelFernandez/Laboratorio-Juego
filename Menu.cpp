@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(){
+Menu::Menu() : NombreEscrito(std::make_unique<std::string>()){
     fondo.loadFromFile("fondo/Menu.png");
     spriteFondo.setTexture(fondo);
 
@@ -70,7 +70,7 @@ void Menu::HacerMenu(){
                 *NombreEscrito = caja.getTexto();
                 MenuMusic.stop();
                 Juego objJuego;
-                objJuego.Jugar(NombreEscrito);
+                objJuego.Jugar(NombreEscrito.get());
                 fondo.loadFromFile("fondo/Menu.png");
                 Visibles = true;
                 Activos = true;
@@ -96,7 +96,6 @@ void Menu::HacerMenu(){
                     Botones[2].setColor(sf::Color::Red);
                     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                         window.close();
-                        delete NombreEscrito;
                     }
                 }
                 else{
@@ -124,3 +123,4 @@ void Menu::HacerMenu(){
 string Menu::getNombreEscrito(){
     return *NombreEscrito;
 }
+
