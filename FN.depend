@@ -2355,10 +2355,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1731435307 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.cpp
+1731508447 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.cpp
 	"Juego.h"
 
-1731438816 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.h
+1731504181 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -2370,6 +2370,8 @@
 	"interfazPelea.h"
 	"BotonesPelea.h"
 	"Menu.h"
+	"Puntaje.h"
+	"ArchivoPuntaje.h"
 
 1730951974 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\sfml\include\sfml\audio.hpp
 	<SFML/System.hpp>
@@ -2482,17 +2484,19 @@
 	<SFML/Audio.hpp>
 	"botones.h"
 
-1731441911 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.h
+1731505906 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
 	"CajaDeTexto.h"
+	"Puntaje.h"
+	"ArchivoPuntaje.h"
 
 1730951974 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\main.cpp
 	"Juego.h"
 	"Menu.h"
 
-1731442522 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.cpp
+1731508206 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\menu.cpp
 	"Menu.h"
 
 1731442305 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\pelea.cpp
@@ -2505,4 +2509,20 @@
 	<SFML\Graphics.hpp>
 	<iostream>
 	"sstream"
+
+1731507810 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\archivopuntaje.cpp
+	"ArchivoPuntaje.h"
+
+1731507231 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\archivopuntaje.h
+	<SFML\Graphics.hpp>
+	<iostream>
+	<cstring>
+	"Puntaje.h"
+
+1731506418 c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\puntaje.h
+	<SFML\Graphics.hpp>
+	<iostream>
+
+1731506426 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\puntaje.cpp
+	"Puntaje.h"
 

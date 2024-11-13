@@ -12,11 +12,14 @@
 #include "interfazPelea.h"
 #include "BotonesPelea.h"
 #include "Menu.h"
+#include "Puntaje.h"
+#include "ArchivoPuntaje.h"
 
 class Juego{
     protected:
-        int puntos, EnemigoActivo;
+        int EnemigoActivo;
         int* puntoSalud;
+        int* puntos;
         bool Visibles, EnemigoMuerto, Gano, SobreBoton1, SobreBoton2, Peleando, EnCambio, PosicionFinal, PeleaTerminada, Reproducir, fondoMensaje, fondoMensajeFinal, Muerto, CheckPoint;
         ///FONDO
         sf::Texture fondo;
@@ -32,7 +35,7 @@ class Juego{
         sf::Music MusicaMapa, MusicaPelea, MusicaPeleaFinal, MusicaVictoria, MusicaDerrota, MusicaFinal;
     public:
         Juego();
-        void Jugar();
+        void Jugar(string* n);
         ~Juego();
 };
 

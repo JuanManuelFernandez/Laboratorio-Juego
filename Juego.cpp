@@ -3,7 +3,7 @@
 Juego::Juego(){
     /// inicializar variables
     puntoSalud = new int(100);
-    puntos = 0;
+    puntos = new int(0);
     EnemigoActivo = 0;
     Visibles = true;
     EnemigoMuerto = false;
@@ -74,7 +74,7 @@ Juego::Juego(){
     MusicaFinal.setVolume(20.f);
 }
 
-void Juego::Jugar(){
+void Juego::Jugar(string* n){
     ///INICIO DE VENTANA
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
@@ -158,6 +158,10 @@ void Juego::Jugar(){
 
     InterfazAtaques.Posicion();
 
+    Puntaje objPuntos;
+    ArchivoPuntos objArchi("Puntaje.dat");
+    objPuntos.setNombre(n);
+
     ///FIN DEFINICION/INSTANCIA DE LOS OBJETOS
 
     ///GAMELOOP
@@ -167,11 +171,13 @@ void Juego::Jugar(){
         while (window.pollEvent(event)){
             ///NOS PERFMITE CERRAR LA VENTANA
             if (event.type == sf::Event::Closed){
+                objArchi.GrabarRegistro();
                 window.close();
             }
         }
         ///VOLVER AL MENU CON ESC
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            objArchi.GrabarRegistro();
             window.close();
             MusicaMapa.stop();
             MusicaPelea.stop();
@@ -193,22 +199,22 @@ void Juego::Jugar(){
         }
         if(EnCambio==false){ /// Si en cambio es false Pone sonidos y colisiones a los items del primer mapa y sino las del segundo
             if(Zarac.esColision(item)){
-                puntos++;
+                *puntos+=1;
                 soundItem.play();
                 item.hide();
             }
             if(Zarac.esColision(item2)){
-                puntos++;
+                *puntos+=1;
                 soundItem.play();
                 item2.hide();
             }
             if(Zarac.esColision(item3)){
-                puntos++;
+                *puntos+=1;
                 soundItem.play();
                 item3.hide();
             }
             if(Zarac.esColision(item4)){
-                puntos++;
+                *puntos+=1;
                 soundItem.play();
                 item4.hide();
             }
@@ -298,7 +304,9 @@ void Juego::Jugar(){
                         EnemigoMuerto = false;
                         Gano = false;
                         Peleando = false; /// El personaje se puede volver a mover
-                        puntos += 5;
+                        *puntos += 5;
+                        objPuntos.setPuntaje(puntos);
+                        objPuntos.Mostrar();
                         Esqueleto.Respawn(-100, -100); /// sacamos al esqueleto del mapa
                         ///Pausa la musica de victoria y reproduce la del mapa
                         MusicaVictoria.stop();
@@ -384,7 +392,9 @@ void Juego::Jugar(){
                         EnemigoMuerto = false;
                         Gano = false;
                         Peleando = false;
-                        puntos += 5;
+                        *puntos += 5;
+                        objPuntos.setPuntaje(puntos);
+                        objPuntos.Mostrar();
                         Rata.Respawn(-200, -200);
                         MusicaVictoria.stop();
                         MusicaMapa.play();
@@ -524,7 +534,7 @@ void Juego::Jugar(){
             }
         }
         /// Muestra los puntos y la salud
-        text.setString(std::to_string(puntos));
+        text.setString(std::to_string(*puntos));
         TextSalud.setString("Salud: " + std::to_string(*puntoSalud));
         TextMenu.setString("ESC: Menu");
 
@@ -627,5 +637,5 @@ void Juego::Jugar(){
 }
 
 Juego::~Juego(){
-    delete puntoSalud;
+    delete puntoSalud, puntos;
 }

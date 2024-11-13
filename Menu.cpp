@@ -10,6 +10,7 @@ Menu::Menu(){
     Reproducir = true;
     Visibles = true;
     Activos = true;
+    BotonPuntos = true;
 }
 
 void Menu::HacerMenu(){
@@ -32,6 +33,8 @@ void Menu::HacerMenu(){
     Botones[0].Posicion(300, 200);
     Botones[1].Posicion(300, 300);
     Botones[2].Posicion(300, 400);
+
+    ArchivoPuntos objArchi("Puntaje.dat");
 
     while (window.isOpen()){
         sf::Event event;
@@ -64,9 +67,10 @@ void Menu::HacerMenu(){
         else{
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !Activos){
                 window.close();
+                *NombreEscrito = caja.getTexto();
                 MenuMusic.stop();
                 Juego objJuego;
-                objJuego.Jugar();
+                objJuego.Jugar(NombreEscrito);
                 fondo.loadFromFile("fondo/Menu.png");
                 Visibles = true;
                 Activos = true;
@@ -78,8 +82,7 @@ void Menu::HacerMenu(){
                 PosicionMouse = sf::Mouse::getPosition(window);
                 if(Botones[1].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
                     Botones[1].setColor(sf::Color::Blue);
-                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
+                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && BotonPuntos){
                     }
                 }
                 else{
@@ -93,6 +96,7 @@ void Menu::HacerMenu(){
                     Botones[2].setColor(sf::Color::Red);
                     if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                         window.close();
+                        delete NombreEscrito;
                     }
                 }
                 else{
@@ -115,4 +119,8 @@ void Menu::HacerMenu(){
 
         window.display();
     }
+}
+
+string Menu::getNombreEscrito(){
+    return *NombreEscrito;
 }
