@@ -111,6 +111,7 @@ void Juego::Jugar(string* n){
     Cristal item2("objetos/Gema2.png");
     Cristal item3("objetos/Gema1.png");
     Cristal item4("objetos/Gema2.png");
+    Cristal item5("objetos/Gema1.png");
     /// intancia objetos corazon en el mapa que recuperan hp
     Corazon itemC, itemC2;
 
@@ -151,6 +152,7 @@ void Juego::Jugar(string* n){
     item2.respawn(50, 600);
     item3.respawn(1550, 540);
     item4.respawn(1550, 660);
+    item5.respawn(1300, 990);
 
     ///RESPAWN CORAZON
     itemC.respawn(1100, 50);
@@ -218,6 +220,7 @@ void Juego::Jugar(string* n){
                 soundItem.play();
                 item4.hide();
             }
+
 
             if(Zarac.esColision(itemC) && *puntoSalud<100){ /// el corazon recupera 50 de vida (no mas de 100)
                 if(*puntoSalud + 50 > 100){
@@ -431,6 +434,11 @@ void Juego::Jugar(string* n){
             }
             if(Zarac.esColision(formas[8])){
                 CheckPoint = true;
+            }
+            if(Zarac.esColision(item5)){
+                *puntos+=1;
+                soundItem.play();
+                item5.hide();
             }
             ///PELEA ARTORIAS
             if(Zarac.esColision(Artorias)){

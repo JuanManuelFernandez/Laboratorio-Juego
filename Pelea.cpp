@@ -94,13 +94,13 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 1){
+                if(Probabilidad() >= 30){
                     Golpe.play();
-                    HPE -= 100;
+                    HPE -= 20;
                     TextLog.setPosition(420, 450);
                     TextLog.setString("Golpe acertado!");
                     TextLogDamage.setPosition(390, 500);
-                    TextLogDamage.setString("Realizaste 25 de Dano!");
+                    TextLogDamage.setString("Realizaste 20 de Dano!");
                 }
                 else{
                     Miss.play();
