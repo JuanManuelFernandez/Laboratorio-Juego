@@ -94,9 +94,9 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 30){
+                if(Probabilidad() >= 1){
                     Golpe.play();
-                    HPE -= 20;
+                    HPE -= 100;
                     TextLog.setPosition(420, 450);
                     TextLog.setString("Golpe acertado!");
                     TextLogDamage.setPosition(390, 500);

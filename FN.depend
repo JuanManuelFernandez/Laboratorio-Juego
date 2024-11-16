@@ -1086,7 +1086,7 @@
 	<SFML/Graphics.hpp>
 	"colisiones.h"
 
-1731031262 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\interfazpelea.cpp
+1731581572 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\interfazpelea.cpp
 	"interfazPelea.h"
 
 1731031262 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\interfazpelea.h
@@ -1108,10 +1108,10 @@
 	<SFML\Graphics.hpp>
 	"colisiones.h"
 
-1731512342 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
+1731784217 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.cpp
 	"Juego.h"
 
-1731512324 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
+1731776070 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\juego.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"funciones.h"
@@ -1237,11 +1237,11 @@
 	<SFML/Audio.hpp>
 	"botones.h"
 
-1731031262 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\main.cpp
+1731784244 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\main.cpp
 	"Juego.h"
 	"Menu.h"
 
-1731511414 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
+1731784346 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
@@ -1250,10 +1250,10 @@
 	"ArchivoPuntaje.h"
 	<memory>
 
-1731557316 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
+1731784710 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
 	"Menu.h"
 
-1731576031 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.cpp
+1731776546 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.cpp
 	"Pelea.h"
 
 1730927005 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\inicializador.h
@@ -2532,18 +2532,19 @@
 1731506426 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\puntaje.cpp
 	"Puntaje.h"
 
-1731512016 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.cpp
+1731783655 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.cpp
 	"ArchivoPuntaje.h"
 
-1731509762 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.h
+1731783633 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.h
 	<SFML\Graphics.hpp>
 	<iostream>
 	<cstring>
 	"Puntaje.h"
 
-1731509762 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\puntaje.h
+1731784612 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\puntaje.h
 	<SFML\Graphics.hpp>
 	<iostream>
+	<cstring>
 
 1731509762 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\cajadetexto.cpp
 	"CajaDeTexto.h"
@@ -2553,6 +2554,6 @@
 	<iostream>
 	"sstream"
 
-1731512409 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\puntaje.cpp
+1731784622 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\puntaje.cpp
 	"Puntaje.h"
 

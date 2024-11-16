@@ -6,7 +6,7 @@
 int main(){
     Menu objMenu;
 
-    objMenu.HacerMenu();
+    objMenu.HacerMenu(false);
 
     return 0;
 }

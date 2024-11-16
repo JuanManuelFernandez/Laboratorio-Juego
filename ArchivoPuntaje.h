@@ -15,7 +15,7 @@ class ArchivoPuntos{
         ArchivoPuntos(const char *n);
         Puntaje leerRegistro(int pos);
         int ContarRegistros();
-        bool GrabarRegistro();
+        bool GrabarRegistro(Puntaje objPuntaje);
 };
 
 

@@ -162,7 +162,10 @@ void Juego::Jugar(string* n){
 
     Puntaje objPuntos;
     ArchivoPuntos objArchi("Puntaje.dat");
-    objPuntos.setNombre(n);
+    ///Creamos un array de char, Para Pasar el string del nombre a un array de char
+    char nombre[30];
+    strcpy(nombre, n-> c_str()); /// copia el string n a el array nombre ||| std::string tiene un método llamado c_str() que devuelve un puntero de tipo const char* a su memoria interna.
+    objPuntos.setNombre(nombre);
 
     ///FIN DEFINICION/INSTANCIA DE LOS OBJETOS
 
@@ -173,13 +176,15 @@ void Juego::Jugar(string* n){
         while (window.pollEvent(event)){
             ///NOS PERFMITE CERRAR LA VENTANA
             if (event.type == sf::Event::Closed){
-                objArchi.GrabarRegistro();
+                objArchi.GrabarRegistro(objPuntos);
+                objPuntos.setPuntaje(puntos);
                 window.close();
             }
         }
         ///VOLVER AL MENU CON ESC
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
-            objArchi.GrabarRegistro();
+            objPuntos.setPuntaje(puntos);
+            objArchi.GrabarRegistro(objPuntos);
             window.close();
             MusicaMapa.stop();
             MusicaPelea.stop();
@@ -187,7 +192,7 @@ void Juego::Jugar(string* n){
             MusicaVictoria.stop();
             MusicaPeleaFinal.stop();
             Menu objMenu;
-            objMenu.HacerMenu();
+            objMenu.HacerMenu(true);
         }
         ///UPDATE
         Zarac.Update(Peleando); /// chequea si se movio wasd (Peleando es un bool por si esta en una pelea no se pueda mover)
@@ -204,21 +209,25 @@ void Juego::Jugar(string* n){
                 *puntos+=1;
                 soundItem.play();
                 item.hide();
+                objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item2)){
                 *puntos+=1;
                 soundItem.play();
                 item2.hide();
+                objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item3)){
                 *puntos+=1;
                 soundItem.play();
                 item3.hide();
+                objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item4)){
                 *puntos+=1;
                 soundItem.play();
                 item4.hide();
+                objPuntos.setPuntaje(puntos);
             }
 
 
@@ -488,6 +497,7 @@ void Juego::Jugar(string* n){
                         objPuntos.setPuntaje(puntos);
                         objPuntos.Mostrar();
                         puntajeAgregado = false;
+                        objArchi.GrabarRegistro(objPuntos);
                         }
                         fondo.loadFromFile("fondo/Mensaje.png");
                     }
@@ -510,7 +520,7 @@ void Juego::Jugar(string* n){
                         window.close();
                         MusicaFinal.pause();
                         Menu objMenu;
-                        objMenu.HacerMenu();
+                        objMenu.HacerMenu(true);
                        }
                     }
                 }
@@ -587,7 +597,7 @@ void Juego::Jugar(string* n){
                 window.draw(TextMenu);
             }
             else{ /// Al estar en Pelea pone visibles en false
-                if(EnemigoMuerto==false && !Muerto){ /// Si el enemigo no esta muerto dibuja a zarac y enemigo
+                if(!EnemigoMuerto && !Muerto){ /// Si el enemigo no esta muerto dibuja a zarac y enemigo
                     window.draw(PersonajeP);
                     ///VERIFICAMOS EN QUE PELEA ESTAMOS
                     if(EnemigoActivo==1){

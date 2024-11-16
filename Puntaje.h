@@ -3,19 +3,20 @@
 
 #include <SFML\Graphics.hpp>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
 class Puntaje{
     private:
-        string Nombre;
+        char Nombre[30];
         int Puntos;
     public:
         Puntaje();
-        void setNombre(string* n);
+        void setNombre(const char* n);
         void setPuntaje(int* p);
-        string getNombre();
         int getPuntaje();
+        const char* getNombre();
         void Mostrar();
 };
 

@@ -13,7 +13,7 @@ Menu::Menu() : NombreEscrito(std::make_unique<std::string>()){
     BotonPuntos = true;
 }
 
-void Menu::HacerMenu(){
+void Menu::HacerMenu(bool ToF){
     sf::RenderWindow window(sf::VideoMode(800, 600), "Kingdom of Kloster");
     window.setFramerateLimit(60);
 
@@ -73,8 +73,7 @@ void Menu::HacerMenu(){
                 objJuego.Jugar(NombreEscrito.get());
                 fondo.loadFromFile("fondo/Menu.png");
                 Visibles = true;
-                Activos = true;
-            }
+                Activos = true;            }
         }
         ///BOTON PUNTAJE
         if(Activos){
@@ -83,6 +82,18 @@ void Menu::HacerMenu(){
                 if(Botones[1].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
                     Botones[1].setColor(sf::Color::Blue);
                     if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && BotonPuntos){
+                        ArchivoPuntos archi("Puntaje.dat");
+                        Puntaje aux;
+                        if(ToF){
+                            cantReg = archi.ContarRegistros();
+                            for(int i=0; i<cantReg; i++){
+                                aux = archi.leerRegistro(i);
+                                aux.Mostrar();
+                            }
+                        }
+                        else{
+                        cout << "Debes jugar una partida para ver el puntaje" << endl;
+                        }
                     }
                 }
                 else{

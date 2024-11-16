@@ -9,6 +9,7 @@ Puntaje ArchivoPuntos::leerRegistro(int pos){
     FILE *p = fopen(Nombre,"rb");
     if(p==NULL){
         cout << "NO SE CREO EL ARCHIVO" << endl;
+        return objPuntaje;
     }
     fseek(p, pos * sizeof (objPuntaje), 0);
     fread(&objPuntaje, sizeof (objPuntaje), 1, p);
@@ -29,14 +30,13 @@ int ArchivoPuntos::ContarRegistros(){
     return cant;
 }
 
-bool ArchivoPuntos::GrabarRegistro(){
-    Puntaje objPuntaje;
-    int Escribir;
-    FILE *p = fopen(Nombre, "wb");
+bool ArchivoPuntos::GrabarRegistro(Puntaje objPuntaje){
+    FILE *p = fopen(Nombre, "ab");
     if(p==NULL){
         cout << "NO SE ABRIO EL ARCHIVO EN GRABAR" << endl;
+        return false;
     }
-    Escribir = fwrite(&objPuntaje, sizeof (objPuntaje), 1, p);
+    int Escribir = fwrite(&objPuntaje, sizeof (Puntaje), 1, p);
     fclose(p);
     return Escribir;
 }

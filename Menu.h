@@ -19,10 +19,10 @@ class Menu{
         sf::Music MenuMusic;
         bool Reproducir, Visibles, Activos, BotonPuntos;
         std::unique_ptr<std::string> NombreEscrito;
-
+        int cantReg;
     public:
         Menu();
-        void HacerMenu();
+        void HacerMenu(bool ToF);
         string getNombreEscrito();
 };
 
