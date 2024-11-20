@@ -1241,7 +1241,7 @@
 	"Juego.h"
 	"Menu.h"
 
-1731784346 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
+1731894547 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.h
 	<SFML/Graphics.hpp>
 	"Juego.h"
 	"botones.h"
@@ -1250,7 +1250,7 @@
 	"ArchivoPuntaje.h"
 	<memory>
 
-1731784710 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
+1731894707 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\menu.cpp
 	"Menu.h"
 
 1731776546 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\pelea.cpp
@@ -2532,7 +2532,7 @@
 1731506426 source:c:\users\juanm\onedrive\escritorio\git\laboratorio-juego-main(2)\laboratorio-juego-main\puntaje.cpp
 	"Puntaje.h"
 
-1731783655 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.cpp
+1731786461 source:c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.cpp
 	"ArchivoPuntaje.h"
 
 1731783633 c:\users\seba\desktop\utn\juego proyecto . git\laboratorio-juego\archivopuntaje.h

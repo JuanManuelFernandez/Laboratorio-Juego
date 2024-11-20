@@ -11,8 +11,8 @@ Puntaje ArchivoPuntos::leerRegistro(int pos){
         cout << "NO SE CREO EL ARCHIVO" << endl;
         return objPuntaje;
     }
-    fseek(p, pos * sizeof (objPuntaje), 0);
-    fread(&objPuntaje, sizeof (objPuntaje), 1, p);
+    fseek(p, pos * sizeof (Puntaje), 0);
+    fread(&objPuntaje, sizeof (Puntaje), 1, p);
     fclose(p);
     return objPuntaje;
 }

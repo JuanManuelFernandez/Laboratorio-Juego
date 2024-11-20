@@ -7,10 +7,19 @@ Menu::Menu() : NombreEscrito(std::make_unique<std::string>()){
     MenuMusic.openFromFile("sonidos/Musica/MenuTheme.wav");
     MenuMusic.setVolume(20.f);
 
+    font.loadFromFile("Pixeleada.ttf");
+
+    PuntajesNombre.setFont(font);
+    PuntajesNombre.setCharacterSize(20);
+    PuntajesNombre.setPosition(50, 100);
+
     Reproducir = true;
     Visibles = true;
     Activos = true;
-    BotonPuntos = true;
+    puntaje = false;
+    saltoLinea = true;
+
+
 }
 
 void Menu::HacerMenu(bool ToF){
@@ -44,13 +53,14 @@ void Menu::HacerMenu(bool ToF){
             }
             switch(event.type){
                 case sf::Event::TextEntered:
-                    if(!Visibles){
+                    if(!Visibles && !puntaje){
                         caja.Escribiendo(event);
                     }
             }
         }
-        ///BOTON JUGAR
-        if(event.type==sf::Event::MouseMoved){
+        ///BOTON PUNTAJE
+        if(Activos){
+            if(event.type==sf::Event::MouseMoved){
             PosicionMouse = sf::Mouse::getPosition(window);
             if(Botones[0].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
                 Botones[0].setColor(sf::Color::Green);
@@ -64,36 +74,36 @@ void Menu::HacerMenu(bool ToF){
                 Botones[0].setColor(sf::Color::Black);
             }
         }
-        else{
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !Activos){
-                window.close();
-                *NombreEscrito = caja.getTexto();
-                MenuMusic.stop();
-                Juego objJuego;
-                objJuego.Jugar(NombreEscrito.get());
-                fondo.loadFromFile("fondo/Menu.png");
-                Visibles = true;
-                Activos = true;            }
-        }
-        ///BOTON PUNTAJE
-        if(Activos){
+
             if(event.type==sf::Event::MouseMoved){
                 PosicionMouse = sf::Mouse::getPosition(window);
                 if(Botones[1].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
                     Botones[1].setColor(sf::Color::Blue);
-                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && BotonPuntos){
-                        ArchivoPuntos archi("Puntaje.dat");
-                        Puntaje aux;
+                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                         if(ToF){
+                            ArchivoPuntos archi("Puntaje.dat");
+                            Puntaje aux;
+                            fondo.loadFromFile("fondo/Puntaje.png");
+                            puntaje = true;
+                            Visibles = false;
+                            Activos = false;
                             cantReg = archi.ContarRegistros();
                             for(int i=0; i<cantReg; i++){
                                 aux = archi.leerRegistro(i);
                                 aux.Mostrar();
+                                TodosLosNombres += aux.getNombre();
+                                TodosLosNombres += " : ";
+                                TodosLosNombres += to_string(aux.getPuntaje());
+                                TodosLosNombres += " | ";
+                                cout << TodosLosNombres << endl;
                             }
+                            TodosLosNombres = agregarSaltoLinea(TodosLosNombres, 50);
+                            PuntajesNombre.setString(TodosLosNombres);
                         }
                         else{
                         cout << "Debes jugar una partida para ver el puntaje" << endl;
                         }
+                    TodosLosNombres = "";
                     }
                 }
                 else{
@@ -114,6 +124,24 @@ void Menu::HacerMenu(bool ToF){
                 }
             }
         }
+        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !Activos && !puntaje){
+                window.close();
+                *NombreEscrito = caja.getTexto();
+                MenuMusic.stop();
+                Juego objJuego;
+                objJuego.Jugar(NombreEscrito.get());
+                fondo.loadFromFile("fondo/Menu.png");
+                Visibles = true;
+                Activos = true;
+        }
+        else{
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !Visibles && puntaje && !Activos){
+                fondo.loadFromFile("fondo/Menu.png");
+                puntaje = false;
+                Visibles = true;
+                Activos = true;
+            }
+        }
 
         window.clear();
 
@@ -122,6 +150,9 @@ void Menu::HacerMenu(bool ToF){
             window.draw(Botones[0]);
             window.draw(Botones[1]);
             window.draw(Botones[2]);
+        }
+        else if(!Visibles && !Activos && puntaje){
+            window.draw(PuntajesNombre);
         }
         else{
             window.draw(caja);
@@ -134,4 +165,13 @@ void Menu::HacerMenu(bool ToF){
 string Menu::getNombreEscrito(){
     return *NombreEscrito;
 }
-
+string Menu::agregarSaltoLinea(string saltoLinea, int CadaCuanto) {
+    string agregarSalto;
+    for (int i = 0; i < saltoLinea.length(); ++i) {
+        agregarSalto += saltoLinea[i];
+        if ((i + 1) % CadaCuanto == 0) {
+            agregarSalto += '\n';
+        }
+    }
+    return agregarSalto;
+}

@@ -17,13 +17,18 @@ class Menu{
         sf::Vector2i PosicionMouse;
         sf::Event event;
         sf::Music MenuMusic;
-        bool Reproducir, Visibles, Activos, BotonPuntos;
+        sf::Font font;
+        sf::Text PuntajesNombre;
+        sf::Clock reloj;
+        bool Reproducir, Visibles, Activos, puntaje, saltoLinea;
         std::unique_ptr<std::string> NombreEscrito;
         int cantReg;
+        string TodosLosNombres;
     public:
         Menu();
         void HacerMenu(bool ToF);
         string getNombreEscrito();
+        string agregarSaltoLinea(string saltoLinea, int CadaCuanto);
 };
 
 #endif // MENU_H_INCLUDED
