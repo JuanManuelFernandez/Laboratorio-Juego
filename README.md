@@ -2,15 +2,13 @@ Universidad Tecnológica Nacional
 Facultad Regional Gral. Pacheco
 Programación II
 
-Videojuego  "Kingdom of kloster"
+Videojuego  "Kingdom of Kloster"
 
-Diseñado por: 
+Diseñado Por: 
 
 Luka Sebastian Herrera
 
 Juan Manuel Fernandez Bogo
-
-Karen Anahi Moreno
 
 
 Informe del Proyecto
