@@ -17,7 +17,6 @@ Menu::Menu() : NombreEscrito(std::make_unique<std::string>()){
     Visibles = true;
     Activos = true;
     puntaje = false;
-    saltoLinea = true;
 
 
 }
@@ -43,8 +42,6 @@ void Menu::HacerMenu(bool ToF){
     Botones[1].Posicion(300, 300);
     Botones[2].Posicion(300, 400);
 
-    ArchivoPuntos objArchi("Puntaje.dat");
-
     while (window.isOpen()){
         sf::Event event;
         while (window.pollEvent(event)){
@@ -61,19 +58,19 @@ void Menu::HacerMenu(bool ToF){
         ///BOTON PUNTAJE
         if(Activos){
             if(event.type==sf::Event::MouseMoved){
-            PosicionMouse = sf::Mouse::getPosition(window);
-            if(Botones[0].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){
-                Botones[0].setColor(sf::Color::Green);
-                if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                    fondo.loadFromFile("fondo/PreJuego.png");
-                    Visibles = false;
-                    Activos = false;
+                PosicionMouse = sf::Mouse::getPosition(window);
+                if(Botones[0].getBounds().contains(PosicionMouse.x, PosicionMouse.y)){ /// boton jugar
+                    Botones[0].setColor(sf::Color::Green);
+                    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+                        fondo.loadFromFile("fondo/PreJuego.png");
+                        Visibles = false;
+                        Activos = false;
+                    }
+                }
+                else{
+                    Botones[0].setColor(sf::Color::Black);
                 }
             }
-            else{
-                Botones[0].setColor(sf::Color::Black);
-            }
-        }
 
             if(event.type==sf::Event::MouseMoved){
                 PosicionMouse = sf::Mouse::getPosition(window);
@@ -90,20 +87,18 @@ void Menu::HacerMenu(bool ToF){
                             cantReg = archi.ContarRegistros();
                             for(int i=0; i<cantReg; i++){
                                 aux = archi.leerRegistro(i);
-                                aux.Mostrar();
                                 TodosLosNombres += aux.getNombre();
                                 TodosLosNombres += " : ";
                                 TodosLosNombres += to_string(aux.getPuntaje());
                                 TodosLosNombres += " | ";
-                                cout << TodosLosNombres << endl;
                             }
                             TodosLosNombres = agregarSaltoLinea(TodosLosNombres, 50);
                             PuntajesNombre.setString(TodosLosNombres);
                         }
                         else{
-                        cout << "Debes jugar una partida para ver el puntaje" << endl;
+                            cout << "Debes jugar una partida para ver el puntaje" << endl;
                         }
-                    TodosLosNombres = "";
+                        TodosLosNombres = "";
                     }
                 }
                 else{

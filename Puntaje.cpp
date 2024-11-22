@@ -8,8 +8,8 @@ void Puntaje::setNombre(const char* n){
     strcpy(Nombre, n);
 }
 
-void Puntaje::setPuntaje(int* p){
-    Puntos = *p;
+void Puntaje::setPuntaje(int& p){
+    Puntos = p;
 }
 
 int Puntaje::getPuntaje(){

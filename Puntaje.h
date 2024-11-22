@@ -14,7 +14,7 @@ class Puntaje{
     public:
         Puntaje();
         void setNombre(const char* n);
-        void setPuntaje(int* p);
+        void setPuntaje(int& p);
         int getPuntaje();
         const char* getNombre();
         void Mostrar();

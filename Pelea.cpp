@@ -45,14 +45,14 @@ void EnPelea::setTam(int w, int h){
     rec.setSize(sf::Vector2f(w, h));
 }
 
-bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
+bool EnPelea::Pelear(int& HP, int vidaEnemigo, int danioEnemigo, bool B1, bool B2){
     if(setVida){
-        HPE = p;
+        HPE = vidaEnemigo;
     }
     setVida = false;
 
     TextTurno.setCharacterSize(30);
-    TextHP.setString("SALUD: " + to_string(*HP));
+    TextHP.setString("SALUD: " + to_string(HP));
     TextHP.setCharacterSize(30);
     TextHP.setPosition(550, 10);
     TextHPE.setString("SALUD: " + to_string(HPE));
@@ -94,9 +94,9 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         }
         else if(B2){
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && !Clickeo){
-                if(Probabilidad() >= 1){
+                if(Probabilidad() >= 20){
                     Golpe.play();
-                    HPE -= 100;
+                    HPE -= 20;
                     TextLog.setPosition(420, 450);
                     TextLog.setString("Golpe acertado!");
                     TextLogDamage.setPosition(390, 500);
@@ -121,11 +121,11 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         if(HPE > 0){
             if(Probabilidad() >= 30){
                 GolpeE.play();
-                *HP -= d;
+                HP -= danioEnemigo;
                 TextLog.setPosition(420, 450);
                 TextLog.setString("Golpe Recibido");
                 TextLogDamage.setPosition(390, 500);
-                TextLogDamage.setString("Recibiste " + to_string(d) + " de dano!");
+                TextLogDamage.setString("Recibiste " + to_string(danioEnemigo) + " de dano!");
             }
             else{
                 Miss.play();
@@ -146,7 +146,7 @@ bool EnPelea::Pelear(int* HP, int p, int d, bool B1, bool B2){
         TextLogDamage.setPosition(-100, -100);
         return true;
     }
-    else if(*HP <= 0){
+    else if(HP <= 0){
         setVida = true;
         return false;
     }

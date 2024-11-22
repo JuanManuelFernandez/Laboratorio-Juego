@@ -8,9 +8,6 @@ Personaje::Personaje(){
 
     _sprite.setTexture(_texture);
 
-    ///ESTABLECEMOS LA VELOCIDAD
-    _velocidad = {5, 5};
-
     ///PARA QUE LA TRANSICIÓN DEL SALTO AL CAMBIO DE POSICIÓN NO SE NOTE
     _sprite.setOrigin(_sprite.getGlobalBounds().width/2, 0);
 

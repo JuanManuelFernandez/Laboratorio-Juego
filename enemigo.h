@@ -13,7 +13,6 @@ class Enemigo: public sf::Drawable, public Colision{
         sf::Texture _texture;
     public:
         Enemigo(string E, int w, int h);
-        void Update();
         void Respawn(float x, float y);
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         sf::FloatRect getBounds() const override;

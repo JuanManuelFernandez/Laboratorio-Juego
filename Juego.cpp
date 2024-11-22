@@ -2,9 +2,9 @@
 
 Juego::Juego(){
     /// inicializar variables
-    puntoSalud = new int(100);
-    puntos = new int(0);
-    EnemigoActivo = 0;
+    puntoSalud = 100;
+    puntos = 0;
+    EnemigoActivo = false;
     Visibles = true;
     EnemigoMuerto = false;
     Gano = false;
@@ -30,8 +30,6 @@ Juego::Juego(){
     text.setColor(sf::Color::White);
     TextSalud.setColor(sf::Color::White);
     TextMenu.setColor(sf::Color::White);
-    text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-    TextMenu.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
     /// tamaño y posicion del puntaje
     text.setCharacterSize(30);
@@ -98,7 +96,7 @@ void Juego::Jugar(string* n){
         Cuadrado("objetos/casa3.png", 178, 169), /// casa abajo derecha
         Cuadrado("objetos/casa4.png", 171, 153), /// casa abajo izquierda
         Cuadrado("objetos/casa2.png", 80, 150), /// casa abajo derecha
-        Cuadrado("objetos/solaire.png", 61, 162), /// estatua solaire
+        Cuadrado("objetos/solaire.png", 50, 130), /// estatua solaire
         ///MAPA FINAL
         Cuadrado("objetos/CasaDestruida.png", 170, 169),
         Cuadrado("objetos/Escombros.png", 200, 100),
@@ -140,7 +138,7 @@ void Juego::Jugar(string* n){
     formas[1].Posicion(550, 20);
     formas[2].Posicion(75, 400);
     formas[3].Posicion(600, 400);
-    formas[4].Posicion(380, 190);
+    formas[4].Posicion(390, 190);
     formas[5].Posicion(80, 10);
     formas[6].Posicion(550, 20);
     formas[7].Posicion(550, 390);
@@ -148,15 +146,15 @@ void Juego::Jugar(string* n){
     formas[9].Posicion(100, 450);
 
     ///RESPAWN CRISTAL
-    item.respawn(800, 800);
-    item2.respawn(50, 600);
-    item3.respawn(1550, 540);
-    item4.respawn(1550, 660);
-    item5.respawn(1300, 990);
+    item.respawn(379, 379);
+    item2.respawn(7, 284);
+    item3.respawn(754, 249);
+    item4.respawn(757, 314);
+    item5.respawn(629, 474);
 
     ///RESPAWN CORAZON
-    itemC.respawn(1100, 50);
-    itemC2.respawn(800, 1150);
+    itemC.respawn(527, 6);
+    itemC2.respawn(395, 556);
 
     InterfazAtaques.Posicion();
 
@@ -206,53 +204,53 @@ void Juego::Jugar(string* n){
         }
         if(EnCambio==false){ /// Si en cambio es false Pone sonidos y colisiones a los items del primer mapa y sino las del segundo
             if(Zarac.esColision(item)){
-                *puntos+=1;
+                puntos+=1;
                 soundItem.play();
                 item.hide();
                 objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item2)){
-                *puntos+=1;
+                puntos+=1;
                 soundItem.play();
                 item2.hide();
                 objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item3)){
-                *puntos+=1;
+                puntos+=1;
                 soundItem.play();
                 item3.hide();
                 objPuntos.setPuntaje(puntos);
             }
             if(Zarac.esColision(item4)){
-                *puntos+=1;
+                puntos+=1;
                 soundItem.play();
                 item4.hide();
                 objPuntos.setPuntaje(puntos);
             }
 
 
-            if(Zarac.esColision(itemC) && *puntoSalud<100){ /// el corazon recupera 50 de vida (no mas de 100)
-                if(*puntoSalud + 50 > 100){
-                    *puntoSalud = 100;
+            if(Zarac.esColision(itemC) && puntoSalud<100){ /// el corazon recupera 50 de vida (no mas de 100)
+                if(puntoSalud + 50 > 100){
+                    puntoSalud = 100;
                 }
                 else{
-                    *puntoSalud += 50;
+                    puntoSalud += 50;
                 }
                 soundHeart.play();
                 itemC.hide();
             }
-            if(Zarac.esColision(itemC2) && *puntoSalud<100){
-                if(*puntoSalud + 50 > 100){
-                    *puntoSalud = 100;
+            if(Zarac.esColision(itemC2) && puntoSalud<100){
+                if(puntoSalud + 50 > 100){
+                    puntoSalud = 100;
                 }
                 else{
-                    *puntoSalud += 50;
+                    puntoSalud += 50;
                 }
                 soundHeart.play();
                 itemC2.hide();
             }
             /// Colisiones con las casas
-            if(Zarac.esColision(formas[0]) || Zarac.esColision(formas[1]) || Zarac.esColision(formas[2]) || Zarac.esColision(formas[3])){
+            if(Zarac.esColision(formas[0]) || Zarac.esColision(formas[1]) || Zarac.esColision(formas[2]) || Zarac.esColision(formas[3]) || Zarac.esColision(formas[4])){
                 Zarac.setPosicion(Zarac.getPosicion() - Zarac.getVelocidad());
             }
             ///PELEA ESQUELETO
@@ -297,7 +295,7 @@ void Juego::Jugar(string* n){
                     PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
-                if(*puntoSalud <= 0){
+                if(puntoSalud <= 0){
                     PeleaTerminada = true;
                     Muerto = true;
                 }
@@ -316,7 +314,7 @@ void Juego::Jugar(string* n){
                         EnemigoMuerto = false;
                         Gano = false;
                         Peleando = false; /// El personaje se puede volver a mover
-                        *puntos += 5;
+                        puntos += 5;
                         objPuntos.setPuntaje(puntos);
                         objPuntos.Mostrar();
                         Esqueleto.Respawn(-100, -100); /// sacamos al esqueleto del mapa
@@ -338,7 +336,7 @@ void Juego::Jugar(string* n){
                         Gano = false;
                         Peleando = false;
                         Muerto = false;
-                        *puntoSalud = 100;
+                        puntoSalud = 100;
                         Zarac.Respawn(410, 0);
                         MusicaDerrota.stop();
                         MusicaMapa.play();
@@ -386,7 +384,7 @@ void Juego::Jugar(string* n){
                     PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
-                else if(*puntoSalud <= 0){
+                else if(puntoSalud <= 0){
                     PeleaTerminada = true;
                     Muerto = true;
                 }
@@ -404,7 +402,7 @@ void Juego::Jugar(string* n){
                         EnemigoMuerto = false;
                         Gano = false;
                         Peleando = false;
-                        *puntos += 5;
+                        puntos += 5;
                         objPuntos.setPuntaje(puntos);
                         objPuntos.Mostrar();
                         Rata.Respawn(-200, -200);
@@ -425,7 +423,7 @@ void Juego::Jugar(string* n){
                         Gano = false;
                         Peleando = false;
                         Muerto = false;
-                        *puntoSalud = 100;
+                        puntoSalud = 100;
                         Zarac.Respawn(410, 0);
                         MusicaDerrota.stop();
                         MusicaMapa.play();
@@ -445,7 +443,7 @@ void Juego::Jugar(string* n){
                 CheckPoint = true;
             }
             if(Zarac.esColision(item5)){
-                *puntos+=1;
+                puntos+=1;
                 soundItem.play();
                 item5.hide();
             }
@@ -485,7 +483,7 @@ void Juego::Jugar(string* n){
                     PeleaTerminada = true;
                     EnemigoMuerto = true;
                 }
-                else if(*puntoSalud <= 0){
+                else if(puntoSalud <= 0){
                     PeleaTerminada = true;
                     Muerto = true;
                 }
@@ -493,7 +491,7 @@ void Juego::Jugar(string* n){
                 if(EnemigoMuerto){
                     if(fondoMensaje){
                         if(puntajeAgregado){
-                        *puntos += 10;
+                        puntos += 10;
                         objPuntos.setPuntaje(puntos);
                         objPuntos.Mostrar();
                         puntajeAgregado = false;
@@ -536,7 +534,7 @@ void Juego::Jugar(string* n){
                         Gano = false;
                         Peleando = false;
                         Muerto = false;
-                        *puntoSalud = 100;
+                        puntoSalud = 100;
                         if(CheckPoint){
                             Zarac.Respawn(50, 350);
                         }
@@ -558,8 +556,8 @@ void Juego::Jugar(string* n){
             }
         }
         /// Muestra los puntos y la salud
-        text.setString(std::to_string(*puntos));
-        TextSalud.setString("Salud: " + std::to_string(*puntoSalud));
+        text.setString(std::to_string(puntos));
+        TextSalud.setString("Salud: " + std::to_string(puntoSalud));
         TextMenu.setString("ESC: Menu");
 
         ///SE BORRA PARA NO SUPERPONER
@@ -661,5 +659,4 @@ void Juego::Jugar(string* n){
 }
 
 Juego::~Juego(){
-    delete puntoSalud, puntos;
 }

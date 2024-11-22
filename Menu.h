@@ -19,11 +19,11 @@ class Menu{
         sf::Music MenuMusic;
         sf::Font font;
         sf::Text PuntajesNombre;
-        sf::Clock reloj;
-        bool Reproducir, Visibles, Activos, puntaje, saltoLinea;
+        bool Reproducir, Visibles, Activos, puntaje;
         std::unique_ptr<std::string> NombreEscrito;
         int cantReg;
         string TodosLosNombres;
+
     public:
         Menu();
         void HacerMenu(bool ToF);
